@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>jenny.yue — Senior Product Designer & PM</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;1,400;1,500&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --canopy-100: #E8F5EC;
+    --canopy-200: #C4E4CC;
+    --canopy-300: #8FCC9F;
+    --canopy-400: #5AAE72;
+    --canopy-500: #3D7A4B;
+    --canopy-600: #2C5C37;
+    --canopy-700: #1A3D23;
+    --soil-100: #F7F2EA;
+    --soil-200: #EDE3D0;
+    --soil-300: #D4C4A8;
+    --soil-400: #B09A7A;
+    --soil-500: #8C7355;
+    --soil-600: #6B5440;
+    --bg-base: #FEFCF8;
+    --bg-subtle: #F7F2EA;
+    --bg-inverse: #1A3D23;
+    --text-primary: #1A3D23;
+    --text-secondary: #4A6354;
+    --text-tertiary: #8C9E93;
+    --text-inverse: #FEFCF8;
+    --shadow-sm: 0 2px 6px rgba(26,61,35,0.08);
+    --shadow-md: 0 4px 16px rgba(26,61,35,0.10);
+    --shadow-lg: 0 8px 32px rgba(26,61,35,0.14);
+    --radius-xs: 4px;
+    --radius-sm: 8px;
+    --radius-md: 12px;
+    --radius-lg: 16px;
+    --radius-xl: 24px;
+    --radius-full: 9999px;
+    --font-display: 'Lora', Georgia, serif;
+    --font-body: 'DM Sans', 'Helvetica Neue', sans-serif;
+    --font-mono: 'JetBrains Mono', monospace;
+    --ease-default: cubic-bezier(0.4, 0, 0.2, 1);
+    --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+    --ease-out: cubic-bezier(0, 0, 0.2, 1);
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--bg-base);
+    color: var(--text-primary);
+    font-family: var(--font-body);
+    font-size: 15px;
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    padding: 20px 40px;
+    display: flex; justify-content: space-between; align-items: center;
+    background: rgba(254,252,248,0.92);
+    backdrop-filter: blur(16px);
+    border-bottom: 1px solid var(--canopy-200);
+  }
+  .nav-name {
+    font-family: var(--font-display);
+    font-size: 17px; font-weight: 500;
+    color: var(--text-primary); text-decoration: none;
+    letter-spacing: -0.01em;
+  }
+  .nav-links { display: flex; gap: 32px; list-style: none; align-items: center; }
+  .nav-links a {
+    font-size: 13px; color: var(--text-secondary);
+    text-decoration: none; font-weight: 400;
+    letter-spacing: 0.02em;
+    transition: color 150ms var(--ease-default);
+  }
+  .nav-links a:hover { color: var(--canopy-500); }
+  .nav-cta {
+    background: var(--canopy-700) !important;
+    color: var(--text-inverse) !important;
+    padding: 8px 18px;
+    border-radius: var(--radius-sm);
+    font-weight: 500 !important;
+    transition: background 150ms var(--ease-default), transform 150ms var(--ease-spring) !important;
+  }
+  .nav-cta:hover { background: var(--canopy-600) !important; transform: translateY(-1px); }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: flex; flex-direction: column; justify-content: center;
+    padding: 120px 40px 80px;
+    max-width: 1200px; margin: 0 auto;
+    position: relative;
+  }
+  .hero-eyebrow {
+    font-family: var(--font-mono); font-size: 11px;
+    font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--canopy-500); margin-bottom: 28px;
+    display: flex; align-items: center; gap: 10px;
+    opacity: 0; animation: fadeUp 0.6s 0.1s var(--ease-out) forwards;
+  }
+  .hero-eyebrow::before { content: ''; width: 24px; height: 1px; background: var(--canopy-400); }
+
+  .hero-headline {
+    font-family: var(--font-display);
+    font-size: clamp(3.5rem, 8vw, 7.5rem);
+    font-weight: 500; line-height: 1.0;
+    color: var(--text-primary);
+    letter-spacing: -0.03em;
+    max-width: 900px;
+    margin-bottom: 32px;
+    opacity: 0; animation: fadeUp 0.7s 0.2s var(--ease-out) forwards;
+  }
+  .hero-headline em { font-style: italic; color: var(--canopy-500); }
+
+  .hero-sub-row {
+    display: flex; gap: 48px; align-items: flex-start;
+    opacity: 0; animation: fadeUp 0.7s 0.35s var(--ease-out) forwards;
+  }
+  .hero-desc {
+    font-size: 17px; color: var(--text-secondary);
+    line-height: 1.65; font-weight: 300;
+    max-width: 520px;
+  }
+  .hero-desc strong { color: var(--text-primary); font-weight: 500; }
+  .hero-tags-col { display: flex; flex-direction: column; gap: 8px; padding-top: 4px; }
+  .hero-tag-item {
+    font-family: var(--font-mono); font-size: 11px;
+    font-weight: 500; letter-spacing: 0.08em;
+    color: var(--text-tertiary);
+    display: flex; align-items: center; gap: 8px;
+    white-space: nowrap;
+  }
+  .hero-tag-item::before {
+    content: ''; width: 6px; height: 6px;
+    border-radius: var(--radius-full);
+    background: var(--canopy-300);
+    flex-shrink: 0;
+  }
+
+  .hero-scroll {
+    position: absolute; bottom: 40px; left: 40px;
+    display: flex; align-items: center; gap: 10px;
+    font-family: var(--font-mono); font-size: 10px;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--text-tertiary);
+    opacity: 0; animation: fadeUp 0.6s 0.7s var(--ease-out) forwards;
+  }
+  .scroll-line {
+    width: 40px; height: 1px; background: var(--soil-300);
+    animation: scrollPulse 2s 1.5s ease-in-out infinite;
+  }
+  @keyframes scrollPulse {
+    0%, 100% { width: 40px; opacity: 0.4; }
+    50% { width: 60px; opacity: 1; }
+  }
+
+  /* WORK SECTION */
+  .work-section {
+    padding: 80px 40px 120px;
+    max-width: 1200px; margin: 0 auto;
+  }
+  .work-header {
+    display: flex; justify-content: space-between; align-items: flex-end;
+    margin-bottom: 48px;
+    padding-bottom: 24px;
+    border-bottom: 1px solid var(--soil-200);
+  }
+  .work-eyebrow {
+    font-family: var(--font-mono); font-size: 11px;
+    font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--canopy-500); margin-bottom: 8px;
+  }
+  .work-heading {
+    font-family: var(--font-display);
+    font-size: clamp(1.8rem, 3vw, 2.5rem);
+    font-weight: 500; letter-spacing: -0.02em;
+    color: var(--text-primary); line-height: 1.1;
+  }
+  .work-count {
+    font-family: var(--font-mono); font-size: 11px;
+    color: var(--text-tertiary); letter-spacing: 0.04em;
+  }
+
+  /* CASE STUDY CARDS */
+  .case-grid { display: flex; flex-direction: column; gap: 2px; }
+
+  .case-card {
+    display: grid;
+    grid-template-columns: 80px 1fr auto;
+    gap: 32px; align-items: center;
+    padding: 32px 0;
+    border-bottom: 1px solid var(--soil-200);
+    text-decoration: none;
+    color: inherit;
+    cursor: pointer;
+    transition: background 200ms var(--ease-default);
+    border-radius: var(--radius-sm);
+    margin: 0 -20px;
+    padding-left: 20px; padding-right: 20px;
+    opacity: 0; transform: translateY(16px);
+    transition: opacity 500ms var(--ease-out), transform 500ms var(--ease-out), background 200ms;
+  }
+  .case-card.visible { opacity: 1; transform: translateY(0); }
+  .case-card:hover { background: var(--bg-subtle); }
+  .case-card:hover .case-arrow { transform: translate(4px, -4px); opacity: 1; }
+  .case-card:hover .case-num { color: var(--canopy-500); }
+
+  .case-num {
+    font-family: var(--font-display);
+    font-size: 3rem; font-weight: 300;
+    color: var(--soil-300); letter-spacing: -0.03em;
+    line-height: 1; font-style: italic;
+    transition: color 200ms;
+  }
+  .case-content { }
+  .case-tags-row { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 10px; }
+  .case-tag {
+    font-family: var(--font-mono); font-size: 10px;
+    font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase;
+    padding: 3px 10px; border-radius: var(--radius-full);
+    background: var(--canopy-100); color: var(--canopy-600);
+    border: 1px solid var(--canopy-200);
+  }
+  .case-tag.soil { background: var(--soil-100); color: var(--soil-600); border-color: var(--soil-200); }
+  .case-title {
+    font-family: var(--font-display);
+    font-size: clamp(1.3rem, 2.5vw, 1.8rem);
+    font-weight: 500; color: var(--text-primary);
+    letter-spacing: -0.02em; line-height: 1.2;
+    margin-bottom: 8px;
+  }
+  .case-desc {
+    font-size: 14px; color: var(--text-secondary);
+    line-height: 1.6; font-weight: 300; max-width: 560px;
+  }
+  .case-meta {
+    display: flex; flex-direction: column; gap: 6px;
+    align-items: flex-end; flex-shrink: 0;
+  }
+  .case-stat {
+    font-family: var(--font-display);
+    font-size: 1.5rem; font-weight: 500;
+    color: var(--canopy-500); letter-spacing: -0.02em;
+    text-align: right; line-height: 1;
+  }
+  .case-stat-label {
+    font-family: var(--font-mono); font-size: 10px;
+    color: var(--text-tertiary); letter-spacing: 0.06em;
+    text-align: right; line-height: 1.3;
+  }
+  .case-arrow {
+    margin-top: 12px;
+    color: var(--canopy-400);
+    opacity: 0.4;
+    transition: transform 200ms var(--ease-spring), opacity 200ms;
+  }
+
+  /* COMING SOON CARD */
+  .case-card-soon {
+    display: grid;
+    grid-template-columns: 80px 1fr;
+    gap: 32px; align-items: center;
+    padding: 32px 20px;
+    border-bottom: 1px solid var(--soil-200);
+    opacity: 0.4;
+  }
+  .soon-badge {
+    font-family: var(--font-mono); font-size: 10px;
+    letter-spacing: 0.08em; text-transform: uppercase;
+    color: var(--soil-500); background: var(--soil-100);
+    border: 1px solid var(--soil-200);
+    padding: 3px 10px; border-radius: var(--radius-full);
+    display: inline-block; margin-bottom: 8px;
+  }
+
+  /* ABOUT STRIP */
+  .about-strip {
+    background: var(--bg-subtle);
+    border-top: 1px solid var(--soil-200);
+    border-bottom: 1px solid var(--soil-200);
+    padding: 80px 40px;
+  }
+  .about-inner {
+    max-width: 1200px; margin: 0 auto;
+    display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center;
+  }
+  .about-left { }
+  .about-eyebrow {
+    font-family: var(--font-mono); font-size: 11px;
+    font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--canopy-500); margin-bottom: 16px;
+    display: flex; align-items: center; gap: 10px;
+  }
+  .about-eyebrow::after { content: ''; width: 32px; height: 1px; background: var(--canopy-300); }
+  .about-heading {
+    font-family: var(--font-display);
+    font-size: clamp(2rem, 3.5vw, 3rem);
+    font-weight: 500; letter-spacing: -0.03em;
+    color: var(--text-primary); line-height: 1.1;
+    margin-bottom: 24px;
+  }
+  .about-heading em { font-style: italic; color: var(--canopy-500); }
+  .about-body {
+    font-size: 15px; color: var(--text-secondary);
+    line-height: 1.75; font-weight: 300; margin-bottom: 16px;
+  }
+  .about-body strong { color: var(--text-primary); font-weight: 500; }
+  .about-link {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-size: 13px; font-weight: 500; color: var(--canopy-600);
+    text-decoration: none; margin-top: 8px;
+    border-bottom: 1px solid var(--canopy-200);
+    padding-bottom: 2px;
+    transition: color 150ms, border-color 150ms;
+  }
+  .about-link:hover { color: var(--canopy-500); border-color: var(--canopy-400); }
+  .about-right { display: flex; flex-direction: column; gap: 16px; }
+  .value-card {
+    background: var(--bg-base);
+    border: 1px solid var(--soil-200);
+    border-radius: var(--radius-md);
+    padding: 20px 24px;
+    display: flex; gap: 16px; align-items: flex-start;
+    transition: box-shadow 200ms var(--ease-default), transform 200ms var(--ease-spring);
+  }
+  .value-card:hover { box-shadow: var(--shadow-sm); transform: translateY(-1px); }
+  .value-num {
+    font-family: var(--font-display);
+    font-size: 1.5rem; font-weight: 300; font-style: italic;
+    color: var(--canopy-300); line-height: 1; flex-shrink: 0;
+    width: 28px;
+  }
+  .value-title {
+    font-size: 13px; font-weight: 500; color: var(--text-primary);
+    margin-bottom: 4px;
+  }
+  .value-text { font-size: 13px; color: var(--text-secondary); line-height: 1.55; font-weight: 300; }
+
+  /* CONTACT */
+  .contact-section {
+    background: var(--bg-inverse);
+    padding: 100px 40px;
+    text-align: center;
+  }
+  .contact-inner { max-width: 600px; margin: 0 auto; }
+  .contact-eyebrow {
+    font-family: var(--font-mono); font-size: 11px;
+    letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--canopy-300); margin-bottom: 20px;
+  }
+  .contact-heading {
+    font-family: var(--font-display);
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    font-weight: 500; color: var(--text-inverse);
+    letter-spacing: -0.03em; line-height: 1.05;
+    margin-bottom: 16px;
+  }
+  .contact-heading em { font-style: italic; color: var(--canopy-300); }
+  .contact-sub {
+    font-size: 15px; color: rgba(254,252,248,0.5);
+    font-weight: 300; margin-bottom: 40px; line-height: 1.6;
+  }
+  .contact-actions { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+  .btn-contact-primary {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: var(--canopy-400); color: var(--bg-inverse);
+    text-decoration: none; padding: 14px 28px;
+    font-size: 14px; font-weight: 500;
+    border-radius: var(--radius-sm);
+    transition: background 150ms, transform 150ms var(--ease-spring);
+  }
+  .btn-contact-primary:hover { background: var(--canopy-300); transform: translateY(-1px); }
+  .btn-contact-ghost {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: transparent; color: rgba(254,252,248,0.7);
+    text-decoration: none; padding: 14px 28px;
+    font-size: 14px; font-weight: 400;
+    border-radius: var(--radius-sm);
+    border: 1px solid rgba(254,252,248,0.2);
+    transition: all 150ms;
+  }
+  .btn-contact-ghost:hover { border-color: rgba(254,252,248,0.5); color: var(--text-inverse); }
+
+  /* FOOTER */
+  footer {
+    background: var(--bg-inverse);
+    border-top: 1px solid rgba(255,255,255,0.06);
+    padding: 24px 40px;
+    display: flex; justify-content: space-between; align-items: center;
+  }
+  .footer-name { font-family: var(--font-display); font-size: 15px; color: var(--canopy-200); font-weight: 500; }
+  .footer-copy { font-family: var(--font-mono); font-size: 11px; color: rgba(254,252,248,0.3); letter-spacing: 0.04em; }
+  .footer-links { display: flex; gap: 24px; }
+  .footer-links a { font-size: 13px; color: rgba(254,252,248,0.4); text-decoration: none; transition: color 150ms; }
+  .footer-links a:hover { color: var(--canopy-200); }
+
+  /* ANIMATIONS */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 900px) {
+    nav { padding: 16px 20px; }
+    .nav-links .nav-cta { display: none; }
+    .hero { padding: 100px 20px 60px; }
+    .hero-sub-row { flex-direction: column; gap: 24px; }
+    .hero-tags-col { flex-direction: row; flex-wrap: wrap; }
+    .work-section { padding: 60px 20px; }
+    .case-card { grid-template-columns: 50px 1fr; gap: 16px; }
+    .case-meta { display: none; }
+    .about-strip { padding: 60px 20px; }
+    .about-inner { grid-template-columns: 1fr; gap: 40px; }
+    .contact-section { padding: 60px 20px; }
+    footer { padding: 20px; flex-direction: column; gap: 12px; text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-name">jenny.yue</a>
+  <ul class="nav-links">
+    <li><a href="#work">Work</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="mailto:jennyyuedesign@gmail.com" class="nav-cta">Get in touch</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <p class="hero-eyebrow">Senior Product Designer & PM</p>
+  <h1 class="hero-headline">Designing for <em>people</em> — at any scale</h1>
+  <div class="hero-sub-row">
+    <p class="hero-desc">
+      I'm Jenny — a product designer and manager based in Sydney. I design with <strong>empathy, build with systems thinking</strong>, and care deeply about what actually ships. My work spans enterprise SaaS, construction tech, brand, and beyond.
+    </p>
+    <div class="hero-tags-col">
+      <span class="hero-tag-item">Sydney, Australia</span>
+      <span class="hero-tag-item">UX · UI · Design Systems · PM</span>
+      <span class="hero-tag-item">Figma · Jira · Storybook</span>
+    </div>
+  </div>
+  <div class="hero-scroll">
+    <div class="scroll-line"></div>
+    Scroll to explore
+  </div>
+</section>
+
+<!-- WORK -->
+<div class="work-section" id="work">
+  <div class="work-header">
+    <div>
+      <p class="work-eyebrow">Selected work</p>
+      <h2 class="work-heading">Case studies</h2>
+    </div>
+    <span class="work-count">01 — 03</span>
+  </div>
+
+  <div class="case-grid">
+
+    <!-- Case 01: Sitemate -->
+    <a href="sitemate.html" class="case-card">
+      <div class="case-num">01</div>
+      <div class="case-content">
+        <div class="case-tags-row">
+          <span class="case-tag">Product Design</span>
+          <span class="case-tag">Product Management</span>
+          <span class="case-tag">Design Systems</span>
+          <span class="case-tag soil">Construction Tech</span>
+        </div>
+        <div class="case-title">Sitemate — designing for the people who build the world</div>
+        <p class="case-desc">From first design hire to product design manager — how I helped turn a construction tech startup into an enterprise platform, shipped features that doubled headcount, and led a team through one of the most complex areas of the product.</p>
+      </div>
+      <div class="case-meta">
+        <div class="case-stat">3x+</div>
+        <div class="case-stat-label">headcount<br>growth</div>
+        <div class="case-arrow">
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M4 16L16 4M16 4H8M16 4v8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+      </div>
+    </a>
+
+    <!-- Case 02: Design Systems -->
+    <div class="case-card-soon">
+      <div class="case-num" style="color:var(--soil-200)">02</div>
+      <div class="case-content">
+        <span class="soon-badge">Coming soon</span>
+        <div class="case-title" style="font-size:1.3rem;color:var(--text-secondary)">Design systems at scale</div>
+        <p class="case-desc">How a modular design system gave a fast-growing engineering team a shared language — and reduced the cost of change as the product evolved.</p>
+      </div>
+    </div>
+
+    <!-- Case 03: Speculative -->
+    <div class="case-card-soon">
+      <div class="case-num" style="color:var(--soil-200)">03</div>
+      <div class="case-content">
+        <span class="soon-badge">Coming soon</span>
+        <div class="case-title" style="font-size:1.3rem;color:var(--text-secondary)">A problem worth solving</div>
+        <p class="case-desc">A self-initiated project exploring a real problem I care about — showing how I approach product design when there's no brief, no constraints, and everything to prove.</p>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ABOUT STRIP -->
+<div class="about-strip">
+  <div class="about-inner">
+    <div class="about-left">
+      <p class="about-eyebrow">A bit about me</p>
+      <h2 class="about-heading">Design is how I<br>make sense of<br><em>the world</em></h2>
+      <p class="about-body">
+        I started in interior architecture, moved into graphic design, and found my home in product. That non-linear path isn't something I explain away — it's <strong>what makes me different</strong>. I see problems spatially, think about systems before screens, and bring a level of craft to product work that comes from years of caring about how things look and feel.
+      </p>
+      <a href="about.html" class="about-link">
+        Full background & experience
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+    </div>
+    <div class="about-right">
+      <div class="value-card">
+        <div class="value-num">1</div>
+        <div>
+          <div class="value-title">Empathy as precision</div>
+          <div class="value-text">Understanding users deeply isn't a soft skill — it's the most precise tool a designer has. Especially when those users are working in high-stakes environments.</div>
+        </div>
+      </div>
+      <div class="value-card">
+        <div class="value-num">2</div>
+        <div>
+          <div class="value-title">Systems before screens</div>
+          <div class="value-text">I build components, patterns, and IA that give teams a shared language. Good systems reduce the cost of change and make the whole team move faster.</div>
+        </div>
+      </div>
+      <div class="value-card">
+        <div class="value-num">3</div>
+        <div>
+          <div class="value-title">Ownership over output</div>
+          <div class="value-text">I care about what ships, not just what I design. That means staying close to engineering, triaging real issues, and iterating on what users actually do.</div>
+        </div>
+      </div>
+      <div class="value-card">
+        <div class="value-num">4</div>
+        <div>
+          <div class="value-title">Scale thinking</div>
+          <div class="value-text">I don't design for one user. I ask how a single decision plays out across a hundred different contexts — roles, devices, levels of technical literacy.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- CONTACT -->
+<section class="contact-section">
+  <div class="contact-inner">
+    <p class="contact-eyebrow">Get in touch</p>
+    <h2 class="contact-heading">Let's build something<br><em>worth building</em></h2>
+    <p class="contact-sub">Open to freelance projects, senior product design roles, and conversations about work that genuinely improves people's lives.</p>
+    <div class="contact-actions">
+      <a href="mailto:jennyyuedesign@gmail.com" class="btn-contact-primary">
+        Send an email
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+      <a href="https://linkedin.com/in/jennifer-zhou-6446b0180" class="btn-contact-ghost" target="_blank">LinkedIn</a>
+      <a href="about.html" class="btn-contact-ghost">About me</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-name">jenny.yue</div>
+  <div class="footer-copy">© 2026 · jennyyuez.github.io</div>
+  <div class="footer-links">
+    <a href="#work">Work</a>
+    <a href="about.html">About</a>
+    <a href="mailto:jennyyuedesign@gmail.com">Contact</a>
+  </div>
+</footer>
+
+<script>
+  // Scroll reveal for case cards
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => entry.target.classList.add('visible'), i * 100);
+      }
+    });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.case-card').forEach(el => observer.observe(el));
+
+  // Active nav on scroll
+  window.addEventListener('scroll', () => {
+    const nav = document.querySelector('nav');
+    nav.style.borderBottomColor = window.scrollY > 20
+      ? 'var(--canopy-200)'
+      : 'transparent';
+  });
+</script>
+
+</body>
+</html>

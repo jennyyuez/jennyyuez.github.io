@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sitemate — jenny.yue</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;1,400;1,500&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --canopy-100:#E8F5EC;--canopy-200:#C4E4CC;--canopy-300:#8FCC9F;
+    --canopy-400:#5AAE72;--canopy-500:#3D7A4B;--canopy-600:#2C5C37;--canopy-700:#1A3D23;
+    --soil-100:#F7F2EA;--soil-200:#EDE3D0;--soil-300:#D4C4A8;--soil-400:#B09A7A;--soil-500:#8C7355;--soil-600:#6B5440;
+    --bg-base:#FEFCF8;--bg-subtle:#F7F2EA;--bg-inverse:#1A3D23;
+    --text-primary:#1A3D23;--text-secondary:#4A6354;--text-tertiary:#8C9E93;--text-inverse:#FEFCF8;
+    --shadow-sm:0 2px 6px rgba(26,61,35,0.08);--shadow-md:0 4px 16px rgba(26,61,35,0.10);
+    --radius-sm:8px;--radius-md:12px;--radius-lg:16px;--radius-full:9999px;
+    --font-display:'Lora',Georgia,serif;--font-body:'DM Sans','Helvetica Neue',sans-serif;--font-mono:'JetBrains Mono',monospace;
+    --ease-out:cubic-bezier(0,0,0.2,1);--ease-spring:cubic-bezier(0.34,1.56,0.64,1);--ease-default:cubic-bezier(0.4,0,0.2,1);
+  }
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{background:var(--bg-base);color:var(--text-primary);font-family:var(--font-body);font-size:15px;line-height:1.7;-webkit-font-smoothing:antialiased}
+
+  nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:20px 40px;display:flex;justify-content:space-between;align-items:center;background:rgba(254,252,248,0.92);backdrop-filter:blur(16px);border-bottom:1px solid var(--canopy-200)}
+  .nav-name{font-family:var(--font-display);font-size:17px;font-weight:500;color:var(--text-primary);text-decoration:none;letter-spacing:-0.01em}
+  .nav-links{display:flex;gap:32px;list-style:none;align-items:center}
+  .nav-links a{font-size:13px;color:var(--text-secondary);text-decoration:none;font-weight:400;letter-spacing:0.02em;transition:color 150ms}
+  .nav-links a:hover{color:var(--canopy-500)}
+  .nav-cta{background:var(--canopy-700)!important;color:var(--text-inverse)!important;padding:8px 18px;border-radius:var(--radius-sm);font-weight:500!important;transition:background 150ms,transform 150ms var(--ease-spring)!important}
+  .nav-cta:hover{background:var(--canopy-600)!important;transform:translateY(-1px)}
+
+  .hero{padding:140px 40px 72px;max-width:1200px;margin:0 auto}
+  .hero-eyebrow{font-family:var(--font-mono);font-size:11px;font-weight:500;letter-spacing:0.12em;text-transform:uppercase;color:var(--canopy-500);margin-bottom:24px;display:flex;align-items:center;gap:10px;opacity:0;animation:fadeUp 0.6s 0.1s var(--ease-out) forwards}
+  .hero-eyebrow::before{content:'';width:24px;height:1px;background:var(--canopy-400)}
+  .hero-title{font-family:var(--font-display);font-size:clamp(2.8rem,6vw,5.5rem);font-weight:500;line-height:1.05;color:var(--text-primary);letter-spacing:-0.03em;max-width:860px;margin-bottom:28px;opacity:0;animation:fadeUp 0.7s 0.2s var(--ease-out) forwards}
+  .hero-title em{font-style:italic;color:var(--canopy-500)}
+  .hero-sub{font-size:17px;color:var(--text-secondary);line-height:1.65;font-weight:300;max-width:560px;margin-bottom:48px;opacity:0;animation:fadeUp 0.7s 0.3s var(--ease-out) forwards}
+
+  .stat-row{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--soil-200);border:1px solid var(--soil-200);border-radius:var(--radius-md);overflow:hidden;opacity:0;animation:fadeUp 0.7s 0.4s var(--ease-out) forwards}
+  .stat-cell{background:var(--bg-base);padding:28px 24px;display:flex;flex-direction:column;gap:6px}
+  .stat-num{font-family:var(--font-display);font-size:2.2rem;font-weight:500;color:var(--canopy-500);letter-spacing:-0.03em;line-height:1}
+  .stat-label{font-family:var(--font-mono);font-size:10px;color:var(--text-tertiary);letter-spacing:0.06em;line-height:1.4}
+
+  .meta-bar{background:var(--bg-inverse);padding:28px 40px;display:flex;gap:48px;flex-wrap:wrap}
+  .meta-label{font-family:var(--font-mono);font-size:10px;text-transform:uppercase;letter-spacing:0.1em;color:var(--canopy-300);margin-bottom:4px}
+  .meta-value{font-size:13px;color:var(--canopy-100);font-weight:400}
+
+  main{max-width:1200px;margin:0 auto;padding:0 40px 80px}
+
+  .content-section{padding:72px 0;border-bottom:1px solid var(--soil-200);opacity:0;transform:translateY(20px);transition:opacity 600ms var(--ease-out),transform 600ms var(--ease-out)}
+  .content-section.visible{opacity:1;transform:translateY(0)}
+  .content-section:last-child{border-bottom:none}
+
+  .section-eyebrow{font-family:var(--font-mono);font-size:11px;font-weight:500;letter-spacing:0.12em;text-transform:uppercase;color:var(--canopy-500);margin-bottom:12px;display:flex;align-items:center;gap:10px}
+  .section-eyebrow::after{content:'';width:32px;height:1px;background:var(--canopy-300)}
+  .section-heading{font-family:var(--font-display);font-size:clamp(1.8rem,3vw,2.5rem);font-weight:500;letter-spacing:-0.02em;color:var(--text-primary);line-height:1.15;margin-bottom:20px}
+  .section-heading em{font-style:italic;color:var(--canopy-500)}
+  .section-body{font-size:15px;color:var(--text-secondary);line-height:1.75;font-weight:300;max-width:680px;margin-bottom:16px}
+  .section-body strong{color:var(--text-primary);font-weight:500}
+
+  .two-col{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:start}
+
+  .timeline{display:flex;flex-direction:column}
+  .timeline-item{display:grid;grid-template-columns:100px 1fr;gap:24px;padding:20px 0;border-bottom:1px solid var(--soil-200)}
+  .timeline-item:last-child{border-bottom:none}
+  .timeline-period{font-family:var(--font-mono);font-size:10px;color:var(--canopy-500);letter-spacing:0.06em;font-weight:500;margin-bottom:2px}
+  .timeline-phase{font-family:var(--font-mono);font-size:10px;color:var(--text-tertiary);letter-spacing:0.04em}
+  .timeline-role{font-family:var(--font-display);font-size:1rem;font-weight:500;color:var(--text-primary);letter-spacing:-0.01em;margin-bottom:4px;line-height:1.3}
+  .timeline-desc{font-size:13px;color:var(--text-secondary);line-height:1.6;font-weight:300}
+
+  .feature-block{background:var(--bg-base);border:1px solid var(--soil-200);border-radius:var(--radius-lg);overflow:hidden;margin-top:32px;transition:box-shadow 200ms}
+  .feature-block:hover{box-shadow:var(--shadow-md)}
+  .feature-header{background:var(--bg-subtle);padding:24px 32px;border-bottom:1px solid var(--soil-200);display:flex;align-items:center;gap:20px}
+  .feature-num{font-family:var(--font-display);font-size:2.5rem;font-weight:300;font-style:italic;color:var(--canopy-200);line-height:1;flex-shrink:0}
+  .feature-tag{font-family:var(--font-mono);font-size:10px;font-weight:500;letter-spacing:0.08em;text-transform:uppercase;color:var(--canopy-600);background:var(--canopy-100);border:1px solid var(--canopy-200);padding:2px 10px;border-radius:var(--radius-full);display:inline-block;margin-bottom:6px}
+  .feature-title{font-family:var(--font-display);font-size:1.4rem;font-weight:500;color:var(--text-primary);letter-spacing:-0.02em;line-height:1.2}
+  .feature-body{padding:32px}
+  .feature-sub{font-family:var(--font-mono);font-size:10px;text-transform:uppercase;letter-spacing:0.1em;color:var(--text-tertiary);font-weight:500;margin-bottom:10px;margin-top:24px}
+  .feature-sub:first-child{margin-top:0}
+  .feature-text{font-size:14px;color:var(--text-secondary);line-height:1.75;font-weight:300;margin-bottom:12px}
+  .feature-list{list-style:none;display:flex;flex-direction:column}
+  .feature-list li{font-size:14px;color:var(--text-secondary);line-height:1.6;font-weight:300;padding:10px 0 10px 20px;position:relative;border-bottom:1px solid var(--soil-200)}
+  .feature-list li:last-child{border-bottom:none}
+  .feature-list li::before{content:'';position:absolute;left:0;top:18px;width:6px;height:6px;border-radius:var(--radius-full);background:var(--canopy-300)}
+
+  .outcome-box{background:var(--canopy-100);border:1px solid var(--canopy-200);border-radius:var(--radius-md);padding:20px 24px;margin-top:24px;display:flex;gap:16px;align-items:flex-start}
+  .outcome-icon{font-family:var(--font-display);font-size:1.2rem;font-weight:300;font-style:italic;color:var(--canopy-400);flex-shrink:0;line-height:1.4}
+  .outcome-label{font-family:var(--font-mono);font-size:10px;text-transform:uppercase;letter-spacing:0.1em;color:var(--canopy-600);margin-bottom:4px;font-weight:500}
+  .outcome-text{font-size:14px;color:var(--text-primary);line-height:1.6;font-weight:400}
+
+  .pullquote{background:var(--bg-inverse);border-radius:var(--radius-lg);padding:48px 56px;margin:48px 0;position:relative;overflow:hidden}
+  .pullquote::before{content:'\201C';font-family:var(--font-display);font-size:160px;font-weight:300;color:rgba(255,255,255,0.05);position:absolute;top:-20px;left:24px;line-height:1;pointer-events:none}
+  .pullquote-text{font-family:var(--font-display);font-size:clamp(1.1rem,2vw,1.5rem);font-style:italic;font-weight:400;color:var(--canopy-100);line-height:1.55;letter-spacing:-0.01em;position:relative;z-index:1;max-width:680px}
+  .pullquote-attr{font-family:var(--font-mono);font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:var(--canopy-400);margin-top:20px;position:relative;z-index:1}
+
+  .systems-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:32px}
+  .system-card{background:var(--bg-base);border:1px solid var(--soil-200);border-radius:var(--radius-md);padding:24px;display:flex;gap:16px;align-items:flex-start;transition:box-shadow 200ms,transform 200ms var(--ease-spring)}
+  .system-card:hover{box-shadow:var(--shadow-sm);transform:translateY(-1px)}
+  .system-num{font-family:var(--font-display);font-size:1.5rem;font-weight:300;font-style:italic;color:var(--canopy-300);line-height:1;flex-shrink:0;width:28px}
+  .system-title{font-size:13px;font-weight:500;color:var(--text-primary);margin-bottom:6px}
+  .system-text{font-size:13px;color:var(--text-secondary);line-height:1.6;font-weight:300}
+
+  .reflections-section{background:var(--bg-inverse);padding:80px 40px}
+  .reflections-inner{max-width:680px;margin:0 auto}
+  .reflections-eyebrow{font-family:var(--font-mono);font-size:11px;font-weight:500;letter-spacing:0.12em;text-transform:uppercase;color:var(--canopy-300);margin-bottom:16px;display:flex;align-items:center;gap:10px}
+  .reflections-eyebrow::after{content:'';width:32px;height:1px;background:rgba(143,204,159,0.4)}
+  .reflections-heading{font-family:var(--font-display);font-size:clamp(1.8rem,3vw,2.5rem);font-weight:500;color:var(--text-inverse);letter-spacing:-0.02em;line-height:1.15;margin-bottom:32px}
+  .reflections-heading em{font-style:italic;color:var(--canopy-300)}
+  .reflections-body{font-size:15px;color:rgba(254,252,248,0.6);line-height:1.75;font-weight:300;margin-bottom:20px}
+  .reflections-body strong{color:var(--canopy-100);font-weight:500}
+
+  footer{background:var(--bg-inverse);border-top:1px solid rgba(255,255,255,0.06);padding:24px 40px;display:flex;justify-content:space-between;align-items:center}
+  .footer-name{font-family:var(--font-display);font-size:15px;color:var(--canopy-200);font-weight:500}
+  .footer-copy{font-family:var(--font-mono);font-size:11px;color:rgba(254,252,248,0.3);letter-spacing:0.04em}
+  .footer-links{display:flex;gap:24px}
+  .footer-links a{font-size:13px;color:rgba(254,252,248,0.4);text-decoration:none;transition:color 150ms}
+  .footer-links a:hover{color:var(--canopy-200)}
+
+  @keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+
+  @media(max-width:900px){
+    nav{padding:16px 20px}
+    .nav-cta{display:none}
+    .hero{padding:100px 20px 48px}
+    .stat-row{grid-template-columns:1fr 1fr}
+    .meta-bar{padding:24px 20px;gap:24px}
+    main{padding:0 20px 60px}
+    .two-col{grid-template-columns:1fr;gap:32px}
+    .systems-grid{grid-template-columns:1fr}
+    .pullquote{padding:32px 24px}
+    .feature-body{padding:24px}
+    .feature-header{padding:20px 24px}
+    .reflections-section{padding:60px 20px}
+    footer{padding:20px;flex-direction:column;gap:12px;text-align:center}
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-name">jenny.yue</a>
+  <ul class="nav-links">
+    <li><a href="index.html#work">Work</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="mailto:jennyyuedesign@gmail.com" class="nav-cta">Get in touch</a></li>
+  </ul>
+</nav>
+
+<div class="hero">
+  <p class="hero-eyebrow">Case study &mdash; Sitemate</p>
+  <h1 class="hero-title">Designing for the people who <em>build the world</em></h1>
+  <p class="hero-sub">From first design hire to product design manager &mdash; how I helped turn a construction tech startup into an enterprise-ready platform, and what it taught me about designing at scale.</p>
+  <div class="stat-row">
+    <div class="stat-cell"><div class="stat-num">3x+</div><div class="stat-label">Headcount growth over 3 years</div></div>
+    <div class="stat-cell"><div class="stat-num">$1M</div><div class="stat-label">ARR reached by Flowsite post-handover</div></div>
+    <div class="stat-cell"><div class="stat-num">70%</div><div class="stat-label">Of support issues traced to Lists &mdash; now one of the lowest</div></div>
+    <div class="stat-cell"><div class="stat-num">20+</div><div class="stat-label">Engineers across web and mobile</div></div>
+  </div>
+</div>
+
+<div class="meta-bar">
+  <div class="meta-item"><div class="meta-label">Role</div><div class="meta-value">Product Design Manager</div></div>
+  <div class="meta-item"><div class="meta-label">Duration</div><div class="meta-value">Multi-year &middot; Dashpivot &amp; Flowsite</div></div>
+  <div class="meta-item"><div class="meta-label">Industry</div><div class="meta-value">Construction tech</div></div>
+  <div class="meta-item"><div class="meta-label">Tools</div><div class="meta-value">Figma &middot; Jira &middot; Storybook &middot; Confluence</div></div>
+  <div class="meta-item"><div class="meta-label">Disciplines</div><div class="meta-value">UX/UI &middot; Design Systems &middot; IA &middot; PM</div></div>
+</div>
+
+<main>
+
+  <section class="content-section">
+    <div class="two-col">
+      <div>
+        <p class="section-eyebrow">The challenge</p>
+        <h2 class="section-heading">A product hitting its <em>ceiling</em></h2>
+        <p class="section-body">Construction is one of the world's least digitised industries &mdash; yet it carries some of the highest stakes. Safety, compliance, the coordination of hundreds of people across complex physical sites.</p>
+        <p class="section-body">When I joined Sitemate as the first design hire, Dashpivot was early-stage and running into a hard ceiling. The wrong person could sign off on a safety form. Follow-up actions got chased over WhatsApp. Enterprise deals stalled because the product couldn't make the compliance guarantees regulated industries needed.</p>
+        <p class="section-body">My job was to help turn Dashpivot from a useful tool into a platform people could stake their compliance on &mdash; while keeping it human enough for a site worker to use without training.</p>
+      </div>
+      <div>
+        <p class="section-eyebrow">My journey</p>
+        <h2 class="section-heading">A <em>non-linear</em> path</h2>
+        <div class="timeline">
+          <div class="timeline-item">
+            <div><div class="timeline-period">Year 1</div><div class="timeline-phase">Dashpivot</div></div>
+            <div><div class="timeline-role">First &amp; only designer</div><div class="timeline-desc">Led design across web and mobile for 20+ engineers. Picked up PM responsibilities 6 months in alongside the CEO.</div></div>
+          </div>
+          <div class="timeline-item">
+            <div><div class="timeline-period">Year 2</div><div class="timeline-phase">Dashpivot</div></div>
+            <div><div class="timeline-role">Product Designer / PM</div><div class="timeline-desc">Took on formal PM responsibilities. Influenced a shift of my role title. The company doubled in headcount as enterprise deals began closing.</div></div>
+          </div>
+          <div class="timeline-item">
+            <div><div class="timeline-period">Year 3</div><div class="timeline-phase">Flowsite</div></div>
+            <div><div class="timeline-role">Product Design Manager</div><div class="timeline-desc">Moved to Flowsite as PDM &mdash; owning E2E design and delivery for the team. Built the foundation that drove Flowsite to $1M ARR, achieved shortly after handover.</div></div>
+          </div>
+          <div class="timeline-item">
+            <div><div class="timeline-period">Now</div><div class="timeline-phase">Foundations</div></div>
+            <div><div class="timeline-role">Product Design Manager</div><div class="timeline-desc">Inherited the Lists module &mdash; most complex and support-heavy area. Leading E2E design, stabilisation, and knowledge transfer across a newly formed team.</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="content-section">
+    <p class="section-eyebrow">Feature story 01</p>
+    <h2 class="section-heading">Approval signatures <em>&amp;</em> permissions</h2>
+    <div class="feature-block">
+      <div class="feature-header">
+        <div class="feature-num">01</div>
+        <div>
+          <span class="feature-tag">Compliance &middot; Architecture &middot; IA</span>
+          <div class="feature-title">Controlling who signs what &mdash; and what happens when they do</div>
+        </div>
+      </div>
+      <div class="feature-body">
+        <div class="feature-sub">The problem</div>
+        <p class="feature-text">Anyone in Dashpivot could sign any form. For a SWMS or audit sign-off &mdash; documents with real safety and legal weight &mdash; that was a compliance failure waiting to happen. Enterprise prospects kept stalling. They needed to know the right person signed the right form at the right stage. The product couldn't guarantee that.</p>
+        <div class="feature-sub">My approach</div>
+        <p class="feature-text">Solving this meant understanding the full architecture first &mdash; how permissions cascaded across folder levels, how internal and external users differed, and how Dashpivot's column-based workflow (Draft &rarr; In Progress &rarr; Complete) mapped to real approval chains on site. I created the IA for the permissions system, then designed a configurable logic field that let teams define exactly who could sign a form and what that signature triggered.</p>
+        <ul class="feature-list">
+          <li>Signature fields became configurable &mdash; teams could define which permission type could sign, with multi-select support for complex approval chains</li>
+          <li>Permissions tiered across folder levels, with distinct rules for internal and external users</li>
+          <li>A signature could advance a form to the next column (approval) or reset it to the previous (rejection) &mdash; mirroring how approvals actually work on site</li>
+        </ul>
+        <div class="outcome-box">
+          <div class="outcome-icon">&#x2197;</div>
+          <div><div class="outcome-label">Outcome</div><div class="outcome-text">The feature unlocked enterprise deals that had previously stalled on compliance requirements &mdash; a key driver of the headcount growth that saw Sitemate double in year two.</div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="content-section">
+    <p class="section-eyebrow">Feature story 02</p>
+    <h2 class="section-heading">Actions &mdash; from <em>WhatsApp</em> to audit trail</h2>
+    <div class="feature-block">
+      <div class="feature-header">
+        <div class="feature-num">02</div>
+        <div>
+          <span class="feature-tag">Discovery &middot; Workflow &middot; Mobile</span>
+          <div class="feature-title">Replacing informal accountability with a documented, structured system</div>
+        </div>
+      </div>
+      <div class="feature-body">
+        <div class="feature-sub">The problem</div>
+        <p class="feature-text">When a site manager found an issue during an audit, they'd send a WhatsApp message. Maybe it got actioned. Maybe it didn't. There was no way to know. Actions was the most heavily requested feature in the product &mdash; every construction document generates follow-up tasks, and without a system to track them, accountability fell through the gaps.</p>
+        <div class="feature-sub">My approach</div>
+        <p class="feature-text">I ran discovery calls with customers before designing anything. The biggest insight: workers needed photo evidence &mdash; before and after &mdash; to prove a task was actually done, not just marked complete. That detail wouldn't have made it into scope without talking to people on site. I designed Actions as a workflow-native feature using Dashpivot's existing column model, so it felt familiar from day one.</p>
+        <ul class="feature-list">
+          <li>V1 &mdash; Foundation: Core form with required fields (description, assignee, due date, priority), optional before photos, and a creator approval signature built on the permissions system already in place</li>
+          <li>V2 &mdash; Navigation: A dedicated Actions view for users to see everything they'd created or been assigned, with full status tracking across workflow columns</li>
+          <li>Later stages handed off to another team to continue building on the foundation</li>
+        </ul>
+        <div class="outcome-box">
+          <div class="outcome-icon">&#x2197;</div>
+          <div><div class="outcome-label">Outcome</div><div class="outcome-text">Site managers went from chasing people on WhatsApp to a full, searchable audit trail inside the same tool they already used for their documentation.</div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="content-section">
+    <p class="section-eyebrow">Design systems &amp; IA</p>
+    <h2 class="section-heading">Making the <em>invisible</em> visible</h2>
+    <p class="section-body">With multiple product surfaces &mdash; web, mobile, integrations &mdash; and a team growing fast, consistency doesn't happen by accident. I built the design system with a modular approach: components flexible enough to support where the product was going, not just where it was.</p>
+    <div class="pullquote">
+      <p class="pullquote-text">I think about design at scale &mdash; not just how this works for one user, but how a single decision plays out across a hundred different contexts.</p>
+      <p class="pullquote-attr">&mdash; Jenny Yue</p>
+    </div>
+    <div class="systems-grid">
+      <div class="system-card"><div class="system-num">1</div><div><div class="system-title">Design system</div><div class="system-text">Modular components built to stay flexible as the product scaled across web, mobile, and integrations. Driven into engineering adoption via Storybook with WCAG 2.1 accessibility baked in from the start.</div></div></div>
+      <div class="system-card"><div class="system-num">2</div><div><div class="system-title">IA diagrams</div><div class="system-text">Made the product's implicit architecture explicit &mdash; how permissions cascaded through folder levels, how data structures worked inside workspaces, how features connected. Gave engineering and design a shared mental model.</div></div></div>
+      <div class="system-card"><div class="system-num">3</div><div><div class="system-title">Lists module &mdash; leadership under pressure</div><div class="system-text">Inherited 70% of all support issues. Knowledge locked with two people. New team. I triaged the backlog, fixed the highest friction bugs, then made the call to put all resources on the Global Items migration &mdash; meeting an external deadline while deliberately using the crunch to spread knowledge across the whole team.</div></div></div>
+      <div class="system-card"><div class="system-num">4</div><div><div class="system-title">The result</div><div class="system-text">Support load dropped significantly. The pressure that had been sitting with two senior engineers lifted. The team came out with the confidence and context to take on the full architectural refactor &mdash; which they're now doing.</div></div></div>
+    </div>
+  </section>
+
+</main>
+
+<section class="reflections-section">
+  <div class="reflections-inner">
+    <p class="reflections-eyebrow">Reflections</p>
+    <h2 class="reflections-heading">What Sitemate <em>taught me</em></h2>
+    <p class="reflections-body">Designing for construction workers &mdash; people whose daily reality involves physical risk, regulatory compliance, and often limited time with a screen &mdash; taught me that <strong>empathy isn't a soft skill</strong>. It's the most precise tool a designer has.</p>
+    <p class="reflections-body">My path at Sitemate wasn't linear. Designer to designer/PM. Dashpivot to Flowsite to Foundations. Each move taught me something the previous one couldn't. I'm a better designer because I've sat in the PM seat. I'm a better PM because I understand how design decisions ripple through engineering.</p>
+    <p class="reflections-body">If I'd do anything differently: <strong>more direct user research, earlier</strong>. Working closely with the CEO gave me a strong line to customer insight &mdash; but the moment in Actions where customers told us they needed photo proof of completion reminded me what you only get when you're talking to the person actually doing the job. I want more of those moments.</p>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-name">jenny.yue</div>
+  <div class="footer-copy">&copy; 2026 &middot; jennyyuez.github.io</div>
+  <div class="footer-links">
+    <a href="index.html">Home</a>
+    <a href="index.html#work">Work</a>
+    <a href="about.html">About</a>
+    <a href="mailto:jennyyuedesign@gmail.com">Contact</a>
+  </div>
+</footer>
+
+<script>
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
+  }, { threshold: 0.08 });
+  document.querySelectorAll('.content-section').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>

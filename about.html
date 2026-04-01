@@ -1,0 +1,806 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About — jenny.yue</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;1,400;1,500&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  /* ── Canopie tokens ── */
+  :root {
+    --canopy-100: #E8F5EC;
+    --canopy-200: #C4E4CC;
+    --canopy-300: #8FCC9F;
+    --canopy-400: #5AAE72;
+    --canopy-500: #3D7A4B;
+    --canopy-600: #2C5C37;
+    --canopy-700: #1A3D23;
+
+    --soil-100: #F7F2EA;
+    --soil-200: #EDE3D0;
+    --soil-300: #D4C4A8;
+    --soil-400: #B09A7A;
+    --soil-500: #8C7355;
+    --soil-600: #6B5440;
+    --soil-700: #3D2E22;
+
+    --bloom-400: #EE5A90;
+    --bloom-500: #D93872;
+
+    --sun-300: #FFD54F;
+    --sun-500: #FFB300;
+
+    --bg-base: #FEFCF8;
+    --bg-subtle: #F7F2EA;
+    --bg-overlay: #EDE3D0;
+    --bg-inverse: #1A3D23;
+
+    --text-primary: #1A3D23;
+    --text-secondary: #4A6354;
+    --text-tertiary: #8C9E93;
+    --text-inverse: #FEFCF8;
+    --text-disabled: #C4D0CA;
+
+    --shadow-sm: 0 2px 6px rgba(26,61,35,0.08);
+    --shadow-md: 0 4px 16px rgba(26,61,35,0.10);
+    --shadow-lg: 0 8px 32px rgba(26,61,35,0.14);
+
+    --radius-xs: 4px;
+    --radius-sm: 8px;
+    --radius-md: 12px;
+    --radius-lg: 16px;
+    --radius-xl: 24px;
+    --radius-full: 9999px;
+
+    --duration-fast: 150ms;
+    --duration-normal: 250ms;
+    --duration-slow: 400ms;
+    --duration-leisurely: 600ms;
+
+    --ease-default: cubic-bezier(0.4, 0, 0.2, 1);
+    --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+    --ease-out: cubic-bezier(0, 0, 0.2, 1);
+
+    --font-display: 'Lora', Georgia, serif;
+    --font-body: 'DM Sans', 'Helvetica Neue', sans-serif;
+    --font-mono: 'JetBrains Mono', monospace;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg-base);
+    color: var(--text-primary);
+    font-family: var(--font-body);
+    font-size: 15px;
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    padding: 20px 40px;
+    display: flex; justify-content: space-between; align-items: center;
+    background: rgba(254,252,248,0.92);
+    backdrop-filter: blur(16px);
+    border-bottom: 1px solid var(--canopy-200);
+  }
+  .nav-name {
+    font-family: var(--font-display);
+    font-size: 17px; font-weight: 500;
+    color: var(--text-primary);
+    text-decoration: none; letter-spacing: -0.01em;
+  }
+  .nav-links { display: flex; gap: 32px; list-style: none; }
+  .nav-links a {
+    font-size: 13px; color: var(--text-secondary);
+    text-decoration: none; font-weight: 400;
+    letter-spacing: 0.02em;
+    transition: color var(--duration-fast) var(--ease-default);
+  }
+  .nav-links a:hover { color: var(--canopy-500); }
+  .nav-links a.active { color: var(--canopy-500); font-weight: 500; }
+
+  /* HERO */
+  .hero {
+    padding: 140px 40px 80px;
+    max-width: 1200px; margin: 0 auto;
+    display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center;
+  }
+  .hero-left { }
+  .hero-eyebrow {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-family: var(--font-mono); font-size: 11px;
+    font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--canopy-500); margin-bottom: 24px;
+  }
+  .hero-eyebrow::before {
+    content: ''; width: 20px; height: 1px; background: var(--canopy-400);
+  }
+  .hero-name {
+    font-family: var(--font-display);
+    font-size: clamp(3rem, 5vw, 5rem);
+    font-weight: 500; line-height: 1.05;
+    color: var(--text-primary);
+    letter-spacing: -0.03em;
+    margin-bottom: 8px;
+  }
+  .hero-name em {
+    font-style: italic; color: var(--canopy-500);
+  }
+  .hero-role {
+    font-family: var(--font-display);
+    font-size: clamp(1rem, 2vw, 1.25rem);
+    font-weight: 300; font-style: italic;
+    color: var(--text-secondary);
+    margin-bottom: 32px; line-height: 1.35;
+  }
+  .hero-bio {
+    font-size: 15px; color: var(--text-secondary);
+    line-height: 1.7; font-weight: 300;
+    max-width: 520px; margin-bottom: 40px;
+  }
+  .hero-bio strong { color: var(--text-primary); font-weight: 500; }
+
+  .hero-actions { display: flex; gap: 12px; flex-wrap: wrap; }
+  .btn-primary {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: var(--canopy-700); color: var(--text-inverse);
+    text-decoration: none; padding: 12px 24px;
+    font-size: 13px; font-weight: 500; letter-spacing: 0.02em;
+    border-radius: var(--radius-sm);
+    transition: background var(--duration-fast) var(--ease-default), transform var(--duration-fast) var(--ease-spring), box-shadow var(--duration-fast);
+  }
+  .btn-primary:hover {
+    background: var(--canopy-600);
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-md);
+  }
+  .btn-secondary {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: transparent; color: var(--text-primary);
+    text-decoration: none; padding: 12px 24px;
+    font-size: 13px; font-weight: 500; letter-spacing: 0.02em;
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--soil-300);
+    transition: all var(--duration-fast) var(--ease-default);
+  }
+  .btn-secondary:hover {
+    background: var(--bg-subtle);
+    border-color: var(--canopy-300);
+    color: var(--canopy-600);
+  }
+
+  /* AVATAR + CARD */
+  .hero-right { position: relative; }
+  .profile-card {
+    background: var(--bg-subtle);
+    border: 1px solid var(--canopy-200);
+    border-radius: var(--radius-xl);
+    padding: 40px;
+    box-shadow: var(--shadow-md);
+  }
+  .avatar-ring {
+    width: 96px; height: 96px;
+    border-radius: var(--radius-full);
+    background: var(--canopy-700);
+    display: flex; align-items: center; justify-content: center;
+    margin-bottom: 24px;
+    font-family: var(--font-display);
+    font-size: 2.5rem; font-weight: 500;
+    color: var(--canopy-100);
+    letter-spacing: -0.02em;
+    border: 3px solid var(--canopy-200);
+  }
+  .profile-name {
+    font-family: var(--font-display);
+    font-size: 20px; font-weight: 500;
+    color: var(--text-primary); margin-bottom: 4px;
+    letter-spacing: -0.02em;
+  }
+  .profile-title {
+    font-size: 13px; color: var(--text-secondary);
+    margin-bottom: 24px; font-weight: 400;
+  }
+  .profile-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 24px; }
+  .tag {
+    font-family: var(--font-mono);
+    font-size: 11px; font-weight: 500;
+    padding: 4px 12px;
+    border-radius: var(--radius-full);
+    border: 1px solid;
+    letter-spacing: 0.04em;
+  }
+  .tag-green { background: var(--canopy-100); color: var(--canopy-600); border-color: var(--canopy-200); }
+  .tag-soil { background: var(--soil-100); color: var(--soil-600); border-color: var(--soil-200); }
+  .profile-meta { display: flex; flex-direction: column; gap: 10px; }
+  .profile-meta-row {
+    display: flex; align-items: center; gap: 10px;
+    font-size: 13px; color: var(--text-secondary);
+  }
+  .meta-dot {
+    width: 6px; height: 6px; border-radius: var(--radius-full);
+    background: var(--canopy-400); flex-shrink: 0;
+  }
+
+  /* MAIN */
+  main { max-width: 1200px; margin: 0 auto; padding: 0 40px 80px; }
+
+  /* DIVIDER */
+  .section-divider {
+    height: 1px; background: var(--soil-200);
+    margin: 64px 0;
+  }
+
+  /* SECTION LABELS */
+  .section-eyebrow {
+    font-family: var(--font-mono); font-size: 11px;
+    font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--canopy-500); margin-bottom: 16px;
+    display: flex; align-items: center; gap: 10px;
+  }
+  .section-eyebrow::after {
+    content: ''; flex: 0 0 32px; height: 1px; background: var(--canopy-300);
+  }
+  .section-heading {
+    font-family: var(--font-display);
+    font-size: clamp(1.8rem, 3vw, 2.5rem);
+    font-weight: 500; line-height: 1.15;
+    color: var(--text-primary); letter-spacing: -0.02em;
+    margin-bottom: 16px;
+  }
+  .section-body {
+    font-size: 15px; color: var(--text-secondary);
+    line-height: 1.7; font-weight: 300; max-width: 640px;
+    margin-bottom: 16px;
+  }
+  .section-body strong { color: var(--text-primary); font-weight: 500; }
+
+  /* PHILOSOPHY */
+  .philosophy-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; margin-top: 40px; }
+  .philosophy-card {
+    background: var(--bg-base);
+    border: 1px solid var(--soil-200);
+    border-radius: var(--radius-md);
+    padding: 28px 24px;
+    transition: box-shadow var(--duration-normal) var(--ease-default), transform var(--duration-normal) var(--ease-spring), border-color var(--duration-normal);
+  }
+  .philosophy-card:hover {
+    box-shadow: var(--shadow-md);
+    transform: translateY(-2px);
+    border-color: var(--canopy-200);
+  }
+  .philosophy-icon {
+    width: 40px; height: 40px;
+    background: var(--canopy-100);
+    border-radius: var(--radius-sm);
+    display: flex; align-items: center; justify-content: center;
+    margin-bottom: 16px;
+  }
+  .philosophy-icon svg { width: 20px; height: 20px; }
+  .philosophy-title {
+    font-family: var(--font-display);
+    font-size: 17px; font-weight: 500;
+    color: var(--text-primary); margin-bottom: 8px;
+    letter-spacing: -0.01em;
+  }
+  .philosophy-text {
+    font-size: 13px; color: var(--text-secondary);
+    line-height: 1.65; font-weight: 300;
+  }
+
+  /* EXPERIENCE */
+  .experience-list { display: flex; flex-direction: column; gap: 0; margin-top: 40px; }
+  .exp-item {
+    display: grid; grid-template-columns: 200px 1fr;
+    gap: 32px; padding: 32px 0;
+    border-bottom: 1px solid var(--soil-200);
+    opacity: 0; transform: translateY(16px);
+    transition: opacity var(--duration-leisurely) var(--ease-out), transform var(--duration-leisurely) var(--ease-out);
+  }
+  .exp-item.visible { opacity: 1; transform: translateY(0); }
+  .exp-item:last-child { border-bottom: none; }
+  .exp-left { }
+  .exp-period {
+    font-family: var(--font-mono); font-size: 11px;
+    color: var(--text-tertiary); letter-spacing: 0.04em;
+    margin-bottom: 8px; font-weight: 500;
+  }
+  .exp-company {
+    font-family: var(--font-display);
+    font-size: 15px; font-weight: 500;
+    color: var(--canopy-600); letter-spacing: -0.01em;
+  }
+  .exp-right { }
+  .exp-role {
+    font-family: var(--font-display);
+    font-size: 20px; font-weight: 500;
+    color: var(--text-primary); letter-spacing: -0.02em;
+    margin-bottom: 8px; line-height: 1.2;
+  }
+  .exp-desc {
+    font-size: 14px; color: var(--text-secondary);
+    line-height: 1.7; font-weight: 300; margin-bottom: 16px;
+  }
+  .exp-highlights { display: flex; flex-direction: column; gap: 8px; }
+  .exp-highlight {
+    display: flex; gap: 12px; align-items: flex-start;
+    font-size: 13px; color: var(--text-secondary);
+    line-height: 1.5; font-weight: 300;
+  }
+  .highlight-dot {
+    width: 5px; height: 5px; border-radius: var(--radius-full);
+    background: var(--canopy-400); flex-shrink: 0; margin-top: 7px;
+  }
+  .exp-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 16px; }
+
+  /* SKILLS */
+  .skills-grid { display: flex; flex-direction: column; gap: 32px; margin-top: 40px; }
+  .skill-group {
+    background: var(--bg-subtle);
+    border: 1px solid var(--soil-200);
+    border-radius: var(--radius-md);
+    padding: 24px;
+  }
+  .skill-group-label {
+    font-family: var(--font-mono); font-size: 10px;
+    font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--canopy-500); margin-bottom: 16px;
+  }
+  .skill-badges { display: flex; flex-wrap: wrap; gap: 8px; }
+
+  /* PULLQUOTE */
+  .pullquote {
+    background: var(--canopy-700);
+    border-radius: var(--radius-lg);
+    padding: 48px 56px;
+    margin: 64px 0;
+    position: relative; overflow: hidden;
+  }
+  .pullquote::before {
+    content: '\201C';
+    font-family: var(--font-display);
+    font-size: 160px; font-weight: 300;
+    color: rgba(255,255,255,0.06);
+    position: absolute; top: -20px; left: 24px;
+    line-height: 1; pointer-events: none;
+  }
+  .pullquote-text {
+    font-family: var(--font-display);
+    font-size: clamp(1.2rem, 2.5vw, 1.75rem);
+    font-style: italic; font-weight: 300;
+    color: var(--canopy-100);
+    line-height: 1.5; letter-spacing: -0.01em;
+    position: relative; z-index: 1;
+    max-width: 720px;
+  }
+  .pullquote-attr {
+    font-family: var(--font-mono);
+    font-size: 11px; letter-spacing: 0.08em;
+    color: var(--canopy-300);
+    margin-top: 24px; font-weight: 500;
+    position: relative; z-index: 1;
+  }
+
+  /* EDUCATION */
+  .education-card {
+    background: var(--bg-subtle);
+    border: 1px solid var(--soil-200);
+    border-radius: var(--radius-md);
+    padding: 32px; margin-top: 40px;
+    display: flex; gap: 32px; align-items: flex-start;
+  }
+  .edu-icon {
+    width: 48px; height: 48px; flex-shrink: 0;
+    background: var(--canopy-100);
+    border-radius: var(--radius-sm);
+    display: flex; align-items: center; justify-content: center;
+  }
+  .edu-degree {
+    font-family: var(--font-display);
+    font-size: 17px; font-weight: 500;
+    color: var(--text-primary); margin-bottom: 4px;
+    letter-spacing: -0.01em;
+  }
+  .edu-school { font-size: 13px; color: var(--canopy-500); margin-bottom: 4px; font-weight: 500; }
+  .edu-period { font-family: var(--font-mono); font-size: 11px; color: var(--text-tertiary); letter-spacing: 0.04em; }
+
+  /* CONTACT STRIP */
+  .contact-strip {
+    background: var(--bg-inverse);
+    padding: 64px 40px;
+    text-align: center;
+    margin-top: 0;
+  }
+  .contact-inner { max-width: 560px; margin: 0 auto; }
+  .contact-label {
+    font-family: var(--font-mono); font-size: 11px;
+    letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--canopy-300); margin-bottom: 16px;
+  }
+  .contact-heading {
+    font-family: var(--font-display);
+    font-size: clamp(1.8rem, 3vw, 2.5rem);
+    font-weight: 500; color: var(--text-inverse);
+    letter-spacing: -0.02em; margin-bottom: 12px;
+  }
+  .contact-sub {
+    font-size: 15px; color: rgba(254,252,248,0.55);
+    font-weight: 300; margin-bottom: 32px;
+  }
+  .contact-actions { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+  .contact-btn {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 12px 24px; border-radius: var(--radius-sm);
+    font-size: 13px; font-weight: 500; text-decoration: none;
+    transition: all var(--duration-fast) var(--ease-default);
+  }
+  .contact-btn-primary {
+    background: var(--canopy-400); color: var(--bg-inverse);
+  }
+  .contact-btn-primary:hover { background: var(--canopy-300); }
+  .contact-btn-ghost {
+    background: transparent; color: var(--text-inverse);
+    border: 1px solid rgba(254,252,248,0.2);
+  }
+  .contact-btn-ghost:hover { border-color: rgba(254,252,248,0.5); background: rgba(254,252,248,0.05); }
+
+  /* FOOTER */
+  footer {
+    background: var(--bg-inverse);
+    border-top: 1px solid rgba(255,255,255,0.06);
+    padding: 24px 40px;
+    display: flex; justify-content: space-between; align-items: center;
+  }
+  .footer-name { font-family: var(--font-display); font-size: 15px; color: var(--canopy-200); font-weight: 500; }
+  .footer-copy { font-family: var(--font-mono); font-size: 11px; color: rgba(254,252,248,0.3); letter-spacing: 0.04em; }
+  .footer-links { display: flex; gap: 24px; }
+  .footer-links a { font-size: 13px; color: rgba(254,252,248,0.4); text-decoration: none; transition: color var(--duration-fast); }
+  .footer-links a:hover { color: var(--canopy-200); }
+
+  /* ANIM */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .hero-left > * { animation: fadeUp var(--duration-leisurely) var(--ease-out) both; }
+  .hero-eyebrow { animation-delay: 0.05s; }
+  .hero-name    { animation-delay: 0.15s; }
+  .hero-role    { animation-delay: 0.22s; }
+  .hero-bio     { animation-delay: 0.30s; }
+  .hero-actions { animation-delay: 0.38s; }
+  .hero-right   { animation: fadeUp 0.7s 0.25s var(--ease-out) both; }
+
+  /* RESPONSIVE */
+  @media (max-width: 900px) {
+    nav { padding: 16px 20px; }
+    .nav-links { display: none; }
+    .hero { grid-template-columns: 1fr; padding: 100px 20px 48px; gap: 40px; }
+    main { padding: 0 20px 60px; }
+    .philosophy-grid, .skills-grid { grid-template-columns: 1fr; }
+    .exp-item { grid-template-columns: 1fr; gap: 8px; }
+    .pullquote { padding: 32px 28px; }
+    .contact-strip { padding: 48px 20px; }
+    footer { padding: 20px; flex-direction: column; gap: 12px; text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="index.html" class="nav-name">jenny.yue</a>
+  <ul class="nav-links">
+    <li><a href="index.html">Work</a></li>
+    <li><a href="about.html" class="active">About</a></li>
+    <li><a href="mailto:jennyyuedesign@gmail.com">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-left">
+    <span class="hero-eyebrow">About me</span>
+    <h1 class="hero-name">Jenny<br><em>Yue</em></h1>
+    <p class="hero-role">Senior Product Designer & PM · Sydney, Australia</p>
+    <p class="hero-bio">
+      I'm a product designer and manager who thinks in systems, leads with empathy, and genuinely cares about what ships. My background spans <strong>construction tech, SaaS, brand, and interior architecture</strong> — a non-linear path I've leaned into rather than apologised for.
+    </p>
+    <p class="hero-bio">
+      I'm driven by a simple belief: <strong>design should improve people's lives</strong> — not just the end users, but the teams building the product too. Whether I'm working on a complex enterprise platform or a freelance brand project, I bring the same curiosity and ownership to the work.
+    </p>
+    <div class="hero-actions">
+      <a href="index.html" class="btn-primary">
+        View case studies
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+      <a href="mailto:jennyyuedesign@gmail.com" class="btn-secondary">Get in touch</a>
+    </div>
+  </div>
+
+  <div class="hero-right">
+    <div class="profile-card">
+      <div class="avatar-ring">JY</div>
+      <div class="profile-name">Jenny Yue</div>
+      <div class="profile-title">Senior Product Designer & Product Manager</div>
+      <div class="profile-tags">
+        <span class="tag tag-green">UX / UI Design</span>
+        <span class="tag tag-green">Design Systems</span>
+        <span class="tag tag-green">Product Strategy</span>
+        <span class="tag tag-soil">Construction Tech</span>
+        <span class="tag tag-soil">Sydney, AU</span>
+      </div>
+      <div class="profile-meta">
+        <div class="profile-meta-row">
+          <div class="meta-dot"></div>
+          <span>First design hire at Sitemate · May 2022–present</span>
+        </div>
+        <div class="profile-meta-row">
+          <div class="meta-dot"></div>
+          <span>Freelancing since 2019 · jenny.yue</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<main>
+
+  <!-- PHILOSOPHY -->
+  <div class="section-divider"></div>
+  <div id="philosophy">
+    <p class="section-eyebrow">How I work</p>
+    <h2 class="section-heading">Design that scales</h2>
+    <p class="section-body">I don't design for one user in isolation. I think about how a single decision ripples across a hundred different contexts — different roles, different devices, different levels of technical literacy. That systems-first thinking shapes everything I do.</p>
+
+    <div class="philosophy-grid">
+      <div class="philosophy-card">
+        <div class="philosophy-icon">
+          <svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="10" cy="10" r="7" stroke="#3D7A4B" stroke-width="1.5"/>
+            <path d="M10 6v4l3 2" stroke="#3D7A4B" stroke-width="1.5" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <div class="philosophy-title">Empathy as precision</div>
+        <div class="philosophy-text">Understanding users isn't a soft skill — it's the most precise tool a designer has. Especially when those users are working in high-stakes physical environments where bad UX has real consequences.</div>
+      </div>
+      <div class="philosophy-card">
+        <div class="philosophy-icon">
+          <svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="3" y="3" width="6" height="6" rx="1" stroke="#3D7A4B" stroke-width="1.5"/>
+            <rect x="11" y="3" width="6" height="6" rx="1" stroke="#3D7A4B" stroke-width="1.5"/>
+            <rect x="3" y="11" width="6" height="6" rx="1" stroke="#3D7A4B" stroke-width="1.5"/>
+            <rect x="11" y="11" width="6" height="6" rx="1" stroke="#3D7A4B" stroke-width="1.5"/>
+          </svg>
+        </div>
+        <div class="philosophy-title">Modular thinking</div>
+        <div class="philosophy-text">I build systems, not screens. Components, patterns, and IA diagrams that give teams a shared language and reduce the cost of change as products evolve.</div>
+      </div>
+      <div class="philosophy-card">
+        <div class="philosophy-icon">
+          <svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M4 10l5 5 7-9" stroke="#3D7A4B" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <div class="philosophy-title">Ownership over output</div>
+        <div class="philosophy-text">I care about what ships, not just what I design. That means staying close to engineering, triaging issues, monitoring quality in production, and iterating based on what users actually do.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PULLQUOTE -->
+  <div class="pullquote">
+    <p class="pullquote-text">"I'm not interested in staying in a lane. I'm interested in whatever it takes to make the product better for the people using it."</p>
+    <p class="pullquote-attr">— Jenny Yue</p>
+  </div>
+
+  <!-- EXPERIENCE -->
+  <div id="experience">
+    <p class="section-eyebrow">Experience</p>
+    <h2 class="section-heading">Where I've worked</h2>
+
+    <div class="experience-list">
+
+      <div class="exp-item">
+        <div class="exp-left">
+          <div class="exp-period">May 2022 — Present</div>
+          <div class="exp-company">Sitemate</div>
+        </div>
+        <div class="exp-right">
+          <div class="exp-role">Senior Product Design Manager</div>
+          <p class="exp-desc">First design hire. Grew from sole designer into a hybrid Product Designer–PM owning end-to-end outcomes across design, delivery, and engineering collaboration — across three distinct product teams over three years.</p>
+
+          <div style="margin-top:20px;display:flex;flex-direction:column;gap:16px">
+
+            <div style="border-left:2px solid var(--canopy-200);padding-left:16px">
+              <div style="font-family:var(--font-mono);font-size:10px;color:var(--canopy-500);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:6px">Year 1–2 · Dashpivot</div>
+              <div class="exp-highlights">
+                <div class="exp-highlight"><div class="highlight-dot"></div><span>Led design of Dashpivot across web and mobile — UX flows, prototypes, and detailed designs across Growth and Core product streams</span></div>
+                <div class="exp-highlight"><div class="highlight-dot"></div><span>Picked up PM responsibilities alongside design 6 months in, working directly with the CEO. Influenced a formal shift of the role to Product Designer / PM</span></div>
+                <div class="exp-highlight"><div class="highlight-dot"></div><span>Defined and evolved the design system — components, patterns, Storybook adoption with engineering, WCAG 2.1 accessibility standards</span></div>
+                <div class="exp-highlight"><div class="highlight-dot"></div><span>Created IA diagrams that made the product's architecture explicit for the whole team — reducing misalignment across design and engineering</span></div>
+              </div>
+            </div>
+
+            <div style="border-left:2px solid var(--canopy-300);padding-left:16px">
+              <div style="font-family:var(--font-mono);font-size:10px;color:var(--canopy-500);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:6px">Year 3 · Flowsite — Product Design Manager</div>
+              <div class="exp-highlights">
+                <div class="exp-highlight"><div class="highlight-dot"></div><span>Moved to Flowsite, Sitemate's integration product, as Product Design Manager — owning E2E design and delivery for the team</span></div>
+                <div class="exp-highlight"><div class="highlight-dot"></div><span>Led full research cycles, built prototypes, conducted user interviews, and shaped the product roadmap through user-driven evidence</span></div>
+                <div class="exp-highlight"><div class="highlight-dot"></div><span>Co-owned product vision and quarterly planning with the founder, translating business goals into clear design objectives</span></div>
+                <div class="exp-highlight"><div class="highlight-dot"></div><span>Built the foundation that drove Flowsite to $1M ARR — achieved shortly after handover to join the Foundations team</span></div>
+              </div>
+            </div>
+
+            <div style="border-left:2px solid var(--canopy-400);padding-left:16px">
+              <div style="font-family:var(--font-mono);font-size:10px;color:var(--canopy-500);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:6px">Current · Foundations Team — Product Design Manager</div>
+              <div class="exp-highlights">
+                <div class="exp-highlight"><div class="highlight-dot"></div><span>Inherited the Lists module — 70% of all support issues — and led stabilisation while delivering incremental front-end improvements</span></div>
+                <div class="exp-highlight"><div class="highlight-dot"></div><span>Led E2E design and delivery for a newly formed team, onboarding new engineers and distributing knowledge that had been locked with two senior team members</span></div>
+                <div class="exp-highlight"><div class="highlight-dot"></div><span>Made the call to put all team resources on the Global Items migration under external deadline pressure — unblocked another team while using the crunch as a deliberate knowledge-sharing exercise</span></div>
+                <div class="exp-highlight"><div class="highlight-dot"></div><span>Led recruitment of 10 designers, developing assessment frameworks and mentoring emerging designers into product leadership roles</span></div>
+              </div>
+            </div>
+
+          </div>
+
+          <div class="exp-tags" style="margin-top:20px">
+            <span class="tag tag-green">Product Design</span>
+            <span class="tag tag-green">Product Management</span>
+            <span class="tag tag-green">Design Systems</span>
+            <span class="tag tag-green">IA</span>
+            <span class="tag tag-soil">Figma</span>
+            <span class="tag tag-soil">Jira</span>
+            <span class="tag tag-soil">Storybook</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="exp-item">
+        <div class="exp-left">
+          <div class="exp-period">Nov 2019 — Present</div>
+          <div class="exp-company">jennyyuedesign</div>
+        </div>
+        <div class="exp-right">
+          <div class="exp-role">Freelance Product Designer</div>
+          <p class="exp-desc">Designing across brand, digital, and product — from financial consulting startups to commercial clients. Each project a chance to explore a different problem space and design context.</p>
+          <div class="exp-highlights">
+            <div class="exp-highlight"><div class="highlight-dot"></div><span>Designed and built websites for financial consulting startups and their sub-brands, delivering cohesive, conversion-focused digital experiences</span></div>
+            <div class="exp-highlight"><div class="highlight-dot"></div><span>Created brand identities and logo systems establishing clear visual direction and scalable brand assets</span></div>
+            <div class="exp-highlight"><div class="highlight-dot"></div><span>Produced campaign content for social platforms aligning visuals with brand strategy and audience engagement goals</span></div>
+          </div>
+          <div class="exp-tags">
+            <span class="tag tag-green">Brand Identity</span>
+            <span class="tag tag-green">Web Design</span>
+            <span class="tag tag-soil">Figma</span>
+            <span class="tag tag-soil">Adobe Suite</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="exp-item">
+        <div class="exp-left">
+          <div class="exp-period">Aug 2019 — May 2022</div>
+          <div class="exp-company">BCR Co Pty Ltd</div>
+        </div>
+        <div class="exp-right">
+          <div class="exp-role">Graphics Designer</div>
+          <p class="exp-desc">Sole designer at BCR, working across web, campaign, and internal communications. Built the foundations of design thinking while shipping real work for real audiences.</p>
+          <div class="exp-highlights">
+            <div class="exp-highlight"><div class="highlight-dot"></div><span>Designed and built web pages and campaign landing pages ensuring brand consistency and conversion-focused UX</span></div>
+            <div class="exp-highlight"><div class="highlight-dot"></div><span>Created targeted email campaigns and promotional content to drive engagement and support marketing initiatives</span></div>
+          </div>
+          <div class="exp-tags">
+            <span class="tag tag-soil">Figma</span>
+            <span class="tag tag-soil">Adobe Suite</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- SKILLS -->
+  <div class="section-divider"></div>
+  <div id="skills">
+    <p class="section-eyebrow">Skills</p>
+    <h2 class="section-heading">What I bring</h2>
+
+    <div class="skills-grid">
+      <div class="skill-group">
+        <div class="skill-group-label">Design &amp; Product</div>
+        <div class="skill-badges">
+          <span class="tag tag-green">Product Design</span>
+          <span class="tag tag-green">UX / UI Design</span>
+          <span class="tag tag-green">Design Systems</span>
+          <span class="tag tag-green">Information Architecture</span>
+          <span class="tag tag-green">User Research</span>
+          <span class="tag tag-green">Usability Testing</span>
+          <span class="tag tag-green">Interaction Design</span>
+          <span class="tag tag-green">Prototyping</span>
+          <span class="tag tag-green">Wireframing</span>
+          <span class="tag tag-green">Accessibility (WCAG 2.1)</span>
+          <span class="tag tag-green">Responsive Design</span>
+          <span class="tag tag-green">Product Management</span>
+          <span class="tag tag-green">Product Strategy</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <div class="skill-group-label">Tools</div>
+        <div class="skill-badges">
+          <span class="tag tag-soil">Figma</span>
+          <span class="tag tag-soil">FigJam</span>
+          <span class="tag tag-soil">Storybook</span>
+          <span class="tag tag-soil">Claude AI</span>
+          <span class="tag tag-soil">Adobe Illustrator</span>
+          <span class="tag tag-soil">Adobe Photoshop</span>
+          <span class="tag tag-soil">Adobe InDesign</span>
+          <span class="tag tag-soil">Jira</span>
+          <span class="tag tag-soil">Confluence</span>
+          <span class="tag tag-soil">Slack</span>
+          <span class="tag tag-soil">Trello</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <div class="skill-group-label">Ways of working</div>
+        <div class="skill-badges">
+          <span class="tag tag-green">Agile / Scrum</span>
+          <span class="tag tag-green">Sprint Planning</span>
+          <span class="tag tag-green">Cross-functional collaboration</span>
+          <span class="tag tag-green">Design mentorship</span>
+          <span class="tag tag-green">Roadmap planning</span>
+          <span class="tag tag-green">Stakeholder management</span>
+          <span class="tag tag-soil">English</span>
+          <span class="tag tag-soil">Chinese</span>
+          <span class="tag tag-soil">Japanese</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+</main>
+
+<!-- CONTACT -->
+<section class="contact-strip">
+  <div class="contact-inner">
+    <p class="contact-label">Get in touch</p>
+    <h2 class="contact-heading">Let's work together</h2>
+    <p class="contact-sub">Open to freelance projects, senior product design roles, and conversations about building things that matter.</p>
+    <div class="contact-actions">
+      <a href="mailto:jennyyuedesign@gmail.com" class="contact-btn contact-btn-primary">Send an email</a>
+      <a href="https://linkedin.com/in/jennifer-zhou-6446b0180" class="contact-btn contact-btn-ghost" target="_blank">LinkedIn</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-name">jenny.yue</div>
+  <div class="footer-copy">© 2026 · jennyyuez.github.io</div>
+  <div class="footer-links">
+    <a href="index.html">Work</a>
+    <a href="about.html">About</a>
+    <a href="mailto:jennyyuedesign@gmail.com">Contact</a>
+  </div>
+</footer>
+
+<script>
+  // Scroll reveal for experience items
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => entry.target.classList.add('visible'), i * 80);
+      }
+    });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.exp-item').forEach(el => observer.observe(el));
+
+
+</script>
+
+</body>
+</html>
