@@ -151,6 +151,29 @@
     animation: waveAnim 2.2s 1.2s ease-in-out 2;
     transform-origin: 70% 70%;
   }
+  /* tangle → calm: the headline acted out. A knotted line under "complicated"
+     draws first, then resolves into a clean stroke under "simple". */
+  .tangle-word { position: relative; white-space: nowrap; }
+  .tangle-word svg {
+    position: absolute; left: -1%; bottom: -0.32em; width: 102%; height: 0.46em;
+    overflow: visible;
+  }
+  .tangle-word svg path {
+    stroke: var(--bloom-400); stroke-width: 5; fill: none;
+    stroke-linecap: round; stroke-linejoin: round;
+    stroke-dasharray: 1400; stroke-dashoffset: 1400;
+    animation: drawSquiggle 1.2s 1.0s var(--ease-out) forwards;
+  }
+  .calm-word { position: relative; white-space: nowrap; }
+  .calm-word svg {
+    position: absolute; left: 0; bottom: -0.12em; width: 100%; height: 0.18em;
+    overflow: visible;
+  }
+  .calm-word svg path {
+    stroke: var(--bloom-400); stroke-width: 5; fill: none; stroke-linecap: round;
+    stroke-dasharray: 600; stroke-dashoffset: 600;
+    animation: drawSquiggle 0.6s 2.15s var(--ease-out) forwards;
+  }
   @keyframes waveAnim {
     0%, 100% { transform: rotate(0); }
     20%, 60% { transform: rotate(16deg); }
@@ -753,10 +776,10 @@
 <!-- HERO -->
 <section class="hero">
   <p class="hero-eyebrow">Senior Product Designer <span class="slash">/</span> Product Manager <span class="slash">/</span> Sydney</p>
-  <h1 class="hero-headline">Hiya, I'm Jenny <span class="wave">👋</span><br>Designing a more <span class="squiggle-word"><em>equitable</em><svg viewBox="0 0 200 20" preserveAspectRatio="none"><path d="M3 13 Q 28 4, 52 11 T 100 11 T 148 11 T 197 9"/></svg></span> world.</h1>
+  <h1 class="hero-headline">Hiya, I'm Jenny <span class="wave">👋</span><br>I make <span class="tangle-word">complicated<svg viewBox="0 0 200 40" preserveAspectRatio="none"><path d="M4 24 c 12,-22 36,-18 30,0 c -4,14 -22,10 -13,-6 c 10,-16 40,-12 44,2 c -4,14 -22,10 -13,-6 c 10,-16 40,-12 44,2 c -4,14 -22,10 -13,-6 c 10,-16 40,-12 44,2 c -4,12 -20,9 -12,-5 c 9,-13 30,-9 42,3 c 10,9 24,9 39,1"/></svg></span> software feel <span class="calm-word"><em>simple</em>.<svg viewBox="0 0 200 20" preserveAspectRatio="none"><path d="M3 10 Q 60 6, 110 9 T 197 8"/></svg></span></h1>
   <div class="hero-sub-row">
     <p class="hero-desc">
-      Designer first, product manager when it counts. I lead the research, <strong>craft the experience, own the roadmap</strong> — and build my own features with Claude. Good design, to me, makes complex things feel human.
+      I've spent the last four years at Sitemate designing software for construction teams — first as the only designer, now leading design and running product. These days I <strong>build what I design</strong>, too, pairing with Claude to ship my own features.
     </p>
     <div class="hero-tags-col">
       <span class="hero-tag-item">Product Design · UX · Design Systems</span>
