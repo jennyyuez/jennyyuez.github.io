@@ -177,6 +177,13 @@
   .fb-input{border:1px solid var(--soil-300);border-radius:6px;height:22px;width:100%;position:relative}
   .fb-input::after{content:'';position:absolute;left:7px;top:7px;width:40%;height:7px;border-radius:3px;background:var(--soil-100)}
 
+  /* video embed */
+  .video-frame{position:relative;max-width:760px;margin:36px auto 0;border:1px solid var(--soil-200);border-radius:var(--radius-lg);overflow:hidden;background:var(--bg-subtle);box-shadow:var(--shadow-md);aspect-ratio:16/10}
+  .video-frame iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+  .video-caption{max-width:760px;margin:12px auto 0}
+  .video-fallback{font-size:13px;color:var(--canopy-600);font-weight:500;text-decoration:none;border-bottom:1px solid var(--canopy-200)}
+  .video-fallback:hover{color:var(--canopy-500);border-color:var(--canopy-400)}
+
   .reflections-section{background:var(--bg-inverse);padding:80px 40px}
   .reflections-inner{max-width:680px;margin:0 auto}
   .reflections-eyebrow{font-family:var(--font-mono);font-size:11px;font-weight:500;letter-spacing:0.12em;text-transform:uppercase;color:var(--canopy-300);margin-bottom:16px;display:flex;align-items:center;gap:10px}
@@ -511,6 +518,16 @@
       <div class="system-card"><div class="system-num">3</div><div><div class="system-title">Lists module &mdash; leadership under pressure</div><div class="system-text">Inherited 70% of all support issues. Knowledge locked with two people. New team. I triaged the backlog, fixed the highest friction bugs, then made the call to put all resources on the Global Items migration &mdash; meeting an external deadline while deliberately using the crunch to spread knowledge across the whole team.</div></div></div>
       <div class="system-card"><div class="system-num">4</div><div><div class="system-title">The result</div><div class="system-text">Support load dropped significantly. The pressure that had been sitting with two senior engineers lifted. The team came out with the confidence and context to take on the full architectural refactor &mdash; which they're now doing.</div></div></div>
     </div>
+  </section>
+
+  <section class="content-section">
+    <p class="section-eyebrow">Sitemate today</p>
+    <h2 class="section-heading">Into the <em>AI era</em></h2>
+    <p class="section-body">The platform keeps evolving. Sitemate's founder recently announced the product's next chapter &mdash; sending Sitemate into the AI era &mdash; built on the foundations this case study covers: the workflow model, the permissions architecture, and the design system that holds it all together.</p>
+    <div class="video-frame">
+      <iframe src="https://www.linkedin.com/embed/feed/update/urn:li:ugcPost:7466956473026154497?compact=1" title="Sitemate enters the AI era — founder announcement" allowfullscreen></iframe>
+    </div>
+    <p class="shot-caption video-caption">Watch: Sitemate's founder announcing the AI era of the platform.&ensp;<a class="video-fallback" href="https://www.linkedin.com/posts/hartleypike_today-im-sending-sitemate-into-the-ai-era-ugcPost-7466956473026154497-gPub" target="_blank" rel="noopener">If the player doesn't load, watch on LinkedIn &rarr;</a></p>
   </section>
 
 </main>
