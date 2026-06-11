@@ -292,6 +292,16 @@
     width: 100%;
     transition: transform 400ms var(--ease-spring);
   }
+  /* real screenshot replaces the CSS mock when the asset exists */
+  .thumb-img {
+    display: block; width: 100%;
+    border: 1px solid var(--soil-200);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-md);
+  }
+  .thumb-img.missing { display: none; }
+  .thumb-img:not(.missing) ~ .mock-browser,
+  .thumb-img:not(.missing) ~ .mock-components { display: none; }
 
   /* mini browser mock */
   .mock-browser {
@@ -785,6 +795,7 @@
     <a href="sitemate.html" class="case-card">
       <div class="case-thumb">
         <div class="case-thumb-inner">
+          <img class="thumb-img" src="assets/sitemate-card.png" alt="Dashpivot — construction workflow app" loading="lazy" onerror="this.classList.add('missing')">
           <div class="mock-browser">
             <div class="mock-browser-bar">
               <span class="mock-dot" style="background:var(--bloom-300)"></span>
