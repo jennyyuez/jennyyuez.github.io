@@ -3,10 +3,11 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>jenny.yue — Senior Product Designer & PM</title>
+<title>jenny.yue — Senior Product Designer</title>
+<meta name="description" content="Jenny Yue — Senior Product Designer & Product Manager in Sydney. I craft the experience, run the product, and ship my own features with AI.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;1,400;1,500&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
   :root {
     --canopy-100: #E8F5EC;
@@ -22,6 +23,13 @@
     --soil-400: #B09A7A;
     --soil-500: #8C7355;
     --soil-600: #6B5440;
+    --bloom-100: #FDEBF2;
+    --bloom-300: #F48FB6;
+    --bloom-400: #EE5A90;
+    --bloom-500: #D93872;
+    --sun-100: #FFF6DC;
+    --sun-300: #FFD54F;
+    --sun-500: #FFB300;
     --bg-base: #FEFCF8;
     --bg-subtle: #F7F2EA;
     --bg-inverse: #1A3D23;
@@ -55,7 +63,9 @@
     font-size: 15px;
     line-height: 1.7;
     -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
   }
+  ::selection { background: var(--sun-300); color: var(--canopy-700); }
 
   /* NAV */
   nav {
@@ -71,6 +81,12 @@
     font-size: 17px; font-weight: 500;
     color: var(--text-primary); text-decoration: none;
     letter-spacing: -0.01em;
+    display: flex; align-items: center; gap: 8px;
+  }
+  .nav-name::before {
+    content: ''; width: 8px; height: 8px;
+    border-radius: var(--radius-full);
+    background: var(--bloom-400);
   }
   .nav-links { display: flex; gap: 32px; list-style: none; align-items: center; }
   .nav-links a {
@@ -94,7 +110,7 @@
   .hero {
     min-height: 100vh;
     display: flex; flex-direction: column; justify-content: center;
-    padding: 120px 40px 80px;
+    padding: 130px 40px 80px;
     max-width: 1200px; margin: 0 auto;
     position: relative;
   }
@@ -106,18 +122,30 @@
     opacity: 0; animation: fadeUp 0.6s 0.1s var(--ease-out) forwards;
   }
   .hero-eyebrow::before { content: ''; width: 24px; height: 1px; background: var(--canopy-400); }
+  .hero-eyebrow .slash { color: var(--bloom-400); }
 
   .hero-headline {
     font-family: var(--font-display);
-    font-size: clamp(3.5rem, 8vw, 7.5rem);
-    font-weight: 500; line-height: 1.0;
+    font-size: clamp(3.2rem, 7.5vw, 7rem);
+    font-weight: 500; line-height: 1.04;
     color: var(--text-primary);
     letter-spacing: -0.03em;
-    max-width: 900px;
-    margin-bottom: 32px;
+    max-width: 980px;
+    margin-bottom: 36px;
     opacity: 0; animation: fadeUp 0.7s 0.2s var(--ease-out) forwards;
   }
   .hero-headline em { font-style: italic; color: var(--canopy-500); }
+  .squiggle-word { position: relative; white-space: nowrap; }
+  .squiggle-word svg {
+    position: absolute; left: 0; bottom: -0.12em; width: 100%; height: 0.22em;
+    overflow: visible;
+  }
+  .squiggle-word svg path {
+    stroke: var(--bloom-400); stroke-width: 5; fill: none; stroke-linecap: round;
+    stroke-dasharray: 600; stroke-dashoffset: 600;
+    animation: drawSquiggle 1s 1s var(--ease-out) forwards;
+  }
+  @keyframes drawSquiggle { to { stroke-dashoffset: 0; } }
 
   .hero-sub-row {
     display: flex; gap: 48px; align-items: flex-start;
@@ -126,7 +154,7 @@
   .hero-desc {
     font-size: 17px; color: var(--text-secondary);
     line-height: 1.65; font-weight: 300;
-    max-width: 520px;
+    max-width: 540px;
   }
   .hero-desc strong { color: var(--text-primary); font-weight: 500; }
   .hero-tags-col { display: flex; flex-direction: column; gap: 8px; padding-top: 4px; }
@@ -143,6 +171,27 @@
     background: var(--canopy-300);
     flex-shrink: 0;
   }
+  .hero-tag-item:nth-child(2)::before { background: var(--bloom-300); }
+  .hero-tag-item:nth-child(3)::before { background: var(--sun-300); }
+
+  /* Rotating badge */
+  .hero-badge {
+    position: absolute; right: 60px; top: 180px;
+    width: 130px; height: 130px;
+    opacity: 0; animation: fadeUp 0.8s 0.6s var(--ease-out) forwards;
+  }
+  .hero-badge svg { width: 100%; height: 100%; animation: spin 24s linear infinite; }
+  .hero-badge text {
+    font-family: var(--font-mono); font-size: 10.5px;
+    letter-spacing: 0.28em; text-transform: uppercase;
+    fill: var(--canopy-500);
+  }
+  .hero-badge .badge-center {
+    position: absolute; inset: 0;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 26px; color: var(--bloom-400);
+  }
+  @keyframes spin { to { transform: rotate(360deg); } }
 
   .hero-scroll {
     position: absolute; bottom: 40px; left: 40px;
@@ -161,66 +210,142 @@
     50% { width: 60px; opacity: 1; }
   }
 
+  /* MARQUEE */
+  .marquee-strip {
+    border-top: 1px solid var(--soil-200);
+    border-bottom: 1px solid var(--soil-200);
+    background: var(--bg-subtle);
+    overflow: hidden;
+    padding: 18px 0;
+  }
+  .marquee-track {
+    display: flex; gap: 48px; width: max-content;
+    animation: marquee 36s linear infinite;
+  }
+  .marquee-track span {
+    font-family: var(--font-display); font-style: italic;
+    font-size: 15px; color: var(--text-secondary);
+    display: flex; align-items: center; gap: 48px;
+    white-space: nowrap; font-weight: 400;
+  }
+  .marquee-track span::after { content: '✿'; font-style: normal; font-size: 11px; color: var(--bloom-300); }
+  .marquee-track span:nth-child(even)::after { content: '✳'; color: var(--canopy-300); }
+  @keyframes marquee { to { transform: translateX(-50%); } }
+
   /* WORK SECTION */
   .work-section {
-    padding: 80px 40px 120px;
+    padding: 100px 40px 120px;
     max-width: 1200px; margin: 0 auto;
   }
   .work-header {
     display: flex; justify-content: space-between; align-items: flex-end;
-    margin-bottom: 48px;
-    padding-bottom: 24px;
-    border-bottom: 1px solid var(--soil-200);
+    margin-bottom: 56px;
   }
   .work-eyebrow {
     font-family: var(--font-mono); font-size: 11px;
     font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase;
     color: var(--canopy-500); margin-bottom: 8px;
+    display: flex; align-items: center; gap: 10px;
   }
+  .work-eyebrow::before { content: ''; width: 24px; height: 1px; background: var(--canopy-400); }
   .work-heading {
     font-family: var(--font-display);
-    font-size: clamp(1.8rem, 3vw, 2.5rem);
+    font-size: clamp(2rem, 3.5vw, 3rem);
     font-weight: 500; letter-spacing: -0.02em;
     color: var(--text-primary); line-height: 1.1;
   }
+  .work-heading em { font-style: italic; color: var(--canopy-500); }
   .work-count {
     font-family: var(--font-mono); font-size: 11px;
     color: var(--text-tertiary); letter-spacing: 0.04em;
   }
 
   /* CASE STUDY CARDS */
-  .case-grid { display: flex; flex-direction: column; gap: 2px; }
+  .case-grid { display: flex; flex-direction: column; gap: 24px; }
 
   .case-card {
     display: grid;
-    grid-template-columns: 80px 1fr auto;
-    gap: 32px; align-items: center;
-    padding: 32px 0;
-    border-bottom: 1px solid var(--soil-200);
+    grid-template-columns: 360px 1fr;
+    gap: 0;
+    border: 1px solid var(--soil-200);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
     text-decoration: none;
     color: inherit;
     cursor: pointer;
-    transition: background 200ms var(--ease-default);
-    border-radius: var(--radius-sm);
-    margin: 0 -20px;
-    padding-left: 20px; padding-right: 20px;
-    opacity: 0; transform: translateY(16px);
-    transition: opacity 500ms var(--ease-out), transform 500ms var(--ease-out), background 200ms;
+    background: var(--bg-base);
+    opacity: 0; transform: translateY(20px);
+    transition: opacity 500ms var(--ease-out), transform 500ms var(--ease-out),
+                box-shadow 250ms var(--ease-default), border-color 250ms;
   }
   .case-card.visible { opacity: 1; transform: translateY(0); }
-  .case-card:hover { background: var(--bg-subtle); }
+  .case-card:hover { box-shadow: var(--shadow-lg); border-color: var(--canopy-200); }
   .case-card:hover .case-arrow { transform: translate(4px, -4px); opacity: 1; }
-  .case-card:hover .case-num { color: var(--canopy-500); }
+  .case-card:hover .case-thumb-inner { transform: scale(1.03) rotate(-0.5deg); }
 
-  .case-num {
-    font-family: var(--font-display);
-    font-size: 3rem; font-weight: 300;
-    color: var(--soil-300); letter-spacing: -0.03em;
-    line-height: 1; font-style: italic;
-    transition: color 200ms;
+  .case-thumb {
+    padding: 36px 0 36px 36px;
+    display: flex; align-items: center;
+    overflow: hidden;
   }
-  .case-content { }
-  .case-tags-row { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 10px; }
+  .case-thumb-inner {
+    width: 100%;
+    transition: transform 400ms var(--ease-spring);
+  }
+
+  /* mini browser mock */
+  .mock-browser {
+    background: #fff;
+    border: 1px solid var(--soil-200);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-md);
+    overflow: hidden;
+  }
+  .mock-browser-bar {
+    display: flex; align-items: center; gap: 5px;
+    padding: 8px 12px;
+    border-bottom: 1px solid var(--soil-100);
+    background: var(--bg-subtle);
+  }
+  .mock-dot { width: 7px; height: 7px; border-radius: var(--radius-full); }
+  .mock-body { display: grid; grid-template-columns: 64px 1fr; min-height: 150px; }
+  .mock-sidebar { background: var(--canopy-700); padding: 10px 8px; display: flex; flex-direction: column; gap: 7px; }
+  .mock-sidebar i { display: block; height: 6px; border-radius: 3px; background: rgba(255,255,255,0.25); }
+  .mock-sidebar i:first-child { background: var(--canopy-300); }
+  .mock-main { padding: 12px; display: flex; flex-direction: column; gap: 7px; }
+  .mock-row { display: flex; gap: 7px; align-items: center; }
+  .mock-cell { height: 12px; border-radius: 3px; background: var(--soil-100); flex: 1; }
+  .mock-cell.w2 { flex: 2; }
+  .mock-chip { width: 34px; height: 12px; border-radius: var(--radius-full); background: var(--canopy-100); border: 1px solid var(--canopy-200); }
+  .mock-chip.pink { background: var(--bloom-100); border-color: var(--bloom-300); }
+  .mock-title-bar { height: 14px; width: 45%; border-radius: 3px; background: var(--canopy-200); margin-bottom: 4px; }
+
+  /* component grid mock */
+  .mock-components {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px;
+  }
+  .mock-comp {
+    background: #fff; border: 1px solid var(--soil-200);
+    border-radius: var(--radius-sm);
+    padding: 12px 10px;
+    display: flex; flex-direction: column; gap: 6px;
+    box-shadow: var(--shadow-sm);
+  }
+  .mock-comp i { display: block; border-radius: 3px; }
+  .mock-swatch { height: 26px; border-radius: var(--radius-xs) !important; }
+  .mock-comp .bar-lg { height: 8px; width: 80%; background: var(--canopy-200); }
+  .mock-comp .bar-sm { height: 6px; width: 55%; background: var(--soil-200); }
+  .mock-btn-pill { height: 16px; border-radius: var(--radius-full) !important; background: var(--canopy-600); width: 70%; }
+  .mock-toggle { width: 28px; height: 16px; border-radius: var(--radius-full) !important; background: var(--canopy-400); position: relative; }
+  .mock-toggle::after { content: ''; position: absolute; right: 2px; top: 2px; width: 12px; height: 12px; border-radius: 50%; background: #fff; }
+
+  .case-content { padding: 36px 40px; display: flex; flex-direction: column; justify-content: center; }
+  .case-top-row { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 14px; }
+  .case-num {
+    font-family: var(--font-mono); font-size: 11px;
+    color: var(--text-tertiary); letter-spacing: 0.08em;
+  }
+  .case-tags-row { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 14px; }
   .case-tag {
     font-family: var(--font-mono); font-size: 10px;
     font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase;
@@ -229,69 +354,213 @@
     border: 1px solid var(--canopy-200);
   }
   .case-tag.soil { background: var(--soil-100); color: var(--soil-600); border-color: var(--soil-200); }
+  .case-tag.bloom { background: var(--bloom-100); color: var(--bloom-500); border-color: var(--bloom-300); }
   .case-title {
     font-family: var(--font-display);
-    font-size: clamp(1.3rem, 2.5vw, 1.8rem);
+    font-size: clamp(1.4rem, 2.5vw, 1.9rem);
     font-weight: 500; color: var(--text-primary);
     letter-spacing: -0.02em; line-height: 1.2;
-    margin-bottom: 8px;
+    margin-bottom: 10px;
   }
   .case-desc {
     font-size: 14px; color: var(--text-secondary);
-    line-height: 1.6; font-weight: 300; max-width: 560px;
+    line-height: 1.65; font-weight: 300; max-width: 600px;
+    margin-bottom: 20px;
   }
-  .case-meta {
-    display: flex; flex-direction: column; gap: 6px;
-    align-items: flex-end; flex-shrink: 0;
-  }
+  .case-foot { display: flex; align-items: center; gap: 28px; }
+  .case-stat-block { display: flex; align-items: baseline; gap: 8px; }
   .case-stat {
     font-family: var(--font-display);
-    font-size: 1.5rem; font-weight: 500;
+    font-size: 1.4rem; font-weight: 500; font-style: italic;
     color: var(--canopy-500); letter-spacing: -0.02em;
-    text-align: right; line-height: 1;
   }
   .case-stat-label {
     font-family: var(--font-mono); font-size: 10px;
     color: var(--text-tertiary); letter-spacing: 0.06em;
-    text-align: right; line-height: 1.3;
+  }
+  .case-cta {
+    display: inline-flex; align-items: center; gap: 6px;
+    font-size: 13px; font-weight: 500; color: var(--canopy-600);
+    margin-left: auto;
   }
   .case-arrow {
-    margin-top: 12px;
     color: var(--canopy-400);
-    opacity: 0.4;
+    opacity: 0.5;
     transition: transform 200ms var(--ease-spring), opacity 200ms;
+    display: inline-flex;
   }
-
-  /* COMING SOON CARD */
-  .case-card-soon {
-    display: grid;
-    grid-template-columns: 80px 1fr;
-    gap: 32px; align-items: center;
-    padding: 32px 20px;
-    border-bottom: 1px solid var(--soil-200);
-    opacity: 0.4;
-  }
+  .case-card-soon { opacity: 1; }
+  .case-card-soon .case-thumb-inner { opacity: 0.55; }
   .soon-badge {
     font-family: var(--font-mono); font-size: 10px;
     letter-spacing: 0.08em; text-transform: uppercase;
-    color: var(--soil-500); background: var(--soil-100);
-    border: 1px solid var(--soil-200);
+    color: var(--sun-500); background: var(--sun-100);
+    border: 1px solid var(--sun-300);
     padding: 3px 10px; border-radius: var(--radius-full);
-    display: inline-block; margin-bottom: 8px;
   }
+
+  /* AI SECTION */
+  .ai-section {
+    background: var(--bg-inverse);
+    padding: 110px 40px;
+    position: relative;
+    overflow: hidden;
+  }
+  .ai-inner {
+    max-width: 1200px; margin: 0 auto;
+    display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center;
+  }
+  .ai-eyebrow {
+    font-family: var(--font-mono); font-size: 11px;
+    font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--canopy-300); margin-bottom: 20px;
+    display: flex; align-items: center; gap: 10px;
+  }
+  .ai-eyebrow::before { content: ''; width: 24px; height: 1px; background: var(--canopy-400); }
+  .ai-heading {
+    font-family: var(--font-display);
+    font-size: clamp(2rem, 3.8vw, 3.2rem);
+    font-weight: 500; letter-spacing: -0.03em;
+    color: var(--text-inverse); line-height: 1.1;
+    margin-bottom: 24px;
+  }
+  .ai-heading em { font-style: italic; color: var(--canopy-300); }
+  .ai-body {
+    font-size: 15px; color: rgba(254,252,248,0.65);
+    line-height: 1.75; font-weight: 300; margin-bottom: 28px;
+    max-width: 480px;
+  }
+  .ai-body strong { color: var(--text-inverse); font-weight: 500; }
+  .ai-points { display: flex; flex-direction: column; gap: 14px; }
+  .ai-point { display: flex; gap: 14px; align-items: flex-start; }
+  .ai-point-icon {
+    width: 26px; height: 26px; flex-shrink: 0;
+    border-radius: var(--radius-sm);
+    background: rgba(143,204,159,0.12);
+    border: 1px solid rgba(143,204,159,0.3);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 12px;
+  }
+  .ai-point-text { font-size: 14px; color: rgba(254,252,248,0.75); line-height: 1.6; font-weight: 300; }
+  .ai-point-text strong { color: var(--text-inverse); font-weight: 500; }
+
+  /* terminal mock */
+  .terminal {
+    background: #11281A;
+    border: 1px solid rgba(143,204,159,0.2);
+    border-radius: var(--radius-lg);
+    box-shadow: 0 16px 48px rgba(0,0,0,0.35);
+    overflow: hidden;
+    font-family: var(--font-mono); font-size: 12.5px;
+    transform: rotate(0.6deg);
+  }
+  .terminal-bar {
+    display: flex; align-items: center; gap: 6px;
+    padding: 12px 16px;
+    background: rgba(0,0,0,0.25);
+    border-bottom: 1px solid rgba(143,204,159,0.12);
+  }
+  .terminal-bar .mock-dot { width: 9px; height: 9px; }
+  .terminal-title {
+    margin-left: 10px; font-size: 10px; letter-spacing: 0.08em;
+    color: rgba(254,252,248,0.35);
+  }
+  .terminal-body { padding: 22px 24px 26px; line-height: 2.0; }
+  .t-prompt { color: var(--bloom-300); }
+  .t-cmd { color: var(--text-inverse); }
+  .t-dim { color: rgba(254,252,248,0.4); }
+  .t-green { color: var(--canopy-300); }
+  .t-yellow { color: var(--sun-300); }
+  .t-cursor {
+    display: inline-block; width: 8px; height: 15px;
+    background: var(--canopy-300); vertical-align: middle;
+    animation: blink 1.1s steps(1) infinite;
+  }
+  @keyframes blink { 50% { opacity: 0; } }
+
+  /* RANGE — two hats */
+  .range-section {
+    padding: 110px 40px;
+    max-width: 1200px; margin: 0 auto;
+  }
+  .range-header { text-align: center; max-width: 640px; margin: 0 auto 64px; }
+  .range-eyebrow {
+    font-family: var(--font-mono); font-size: 11px;
+    font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--canopy-500); margin-bottom: 16px;
+  }
+  .range-heading {
+    font-family: var(--font-display);
+    font-size: clamp(2rem, 3.5vw, 3rem);
+    font-weight: 500; letter-spacing: -0.02em;
+    color: var(--text-primary); line-height: 1.15;
+    margin-bottom: 16px;
+  }
+  .range-heading em { font-style: italic; color: var(--canopy-500); }
+  .range-sub { font-size: 15px; color: var(--text-secondary); font-weight: 300; line-height: 1.7; }
+
+  .range-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; position: relative; }
+  .range-col {
+    border: 1px solid var(--soil-200);
+    border-radius: var(--radius-lg);
+    padding: 40px 36px;
+    background: var(--bg-base);
+    transition: box-shadow 250ms var(--ease-default), transform 250ms var(--ease-spring), border-color 250ms;
+  }
+  .range-col:hover { box-shadow: var(--shadow-md); transform: translateY(-3px); }
+  .range-col.designer { background: linear-gradient(160deg, var(--canopy-100) 0%, var(--bg-base) 55%); border-color: var(--canopy-200); }
+  .range-col.pm { background: linear-gradient(160deg, var(--soil-100) 0%, var(--bg-base) 55%); }
+  .range-amp {
+    position: absolute; left: 50%; top: 50%;
+    transform: translate(-50%, -50%);
+    width: 52px; height: 52px;
+    background: var(--bg-inverse);
+    color: var(--canopy-200);
+    border-radius: var(--radius-full);
+    display: flex; align-items: center; justify-content: center;
+    font-family: var(--font-display); font-style: italic;
+    font-size: 22px;
+    box-shadow: var(--shadow-md);
+    z-index: 2;
+    border: 3px solid var(--bg-base);
+  }
+  .range-col-label {
+    font-family: var(--font-mono); font-size: 10px;
+    letter-spacing: 0.12em; text-transform: uppercase;
+    margin-bottom: 12px; font-weight: 500;
+  }
+  .range-col.designer .range-col-label { color: var(--canopy-500); }
+  .range-col.pm .range-col-label { color: var(--soil-500); }
+  .range-col-title {
+    font-family: var(--font-display);
+    font-size: 1.6rem; font-weight: 500;
+    letter-spacing: -0.02em; color: var(--text-primary);
+    margin-bottom: 16px; line-height: 1.2;
+  }
+  .range-col-title em { font-style: italic; }
+  .range-list { list-style: none; display: flex; flex-direction: column; gap: 11px; }
+  .range-list li {
+    display: flex; gap: 12px; align-items: flex-start;
+    font-size: 14px; color: var(--text-secondary);
+    line-height: 1.55; font-weight: 300;
+  }
+  .range-list li::before {
+    content: '→'; flex-shrink: 0;
+    font-family: var(--font-mono); font-size: 12px;
+    color: var(--canopy-400); margin-top: 2px;
+  }
+  .range-col.pm .range-list li::before { color: var(--soil-400); }
 
   /* ABOUT STRIP */
   .about-strip {
     background: var(--bg-subtle);
     border-top: 1px solid var(--soil-200);
-    border-bottom: 1px solid var(--soil-200);
-    padding: 80px 40px;
+    padding: 100px 40px;
   }
   .about-inner {
     max-width: 1200px; margin: 0 auto;
-    display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center;
+    display: grid; grid-template-columns: 1.1fr 1fr; gap: 80px; align-items: center;
   }
-  .about-left { }
   .about-eyebrow {
     font-family: var(--font-mono); font-size: 11px;
     font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase;
@@ -303,7 +572,7 @@
     font-family: var(--font-display);
     font-size: clamp(2rem, 3.5vw, 3rem);
     font-weight: 500; letter-spacing: -0.03em;
-    color: var(--text-primary); line-height: 1.1;
+    color: var(--text-primary); line-height: 1.12;
     margin-bottom: 24px;
   }
   .about-heading em { font-style: italic; color: var(--canopy-500); }
@@ -321,35 +590,46 @@
     transition: color 150ms, border-color 150ms;
   }
   .about-link:hover { color: var(--canopy-500); border-color: var(--canopy-400); }
-  .about-right { display: flex; flex-direction: column; gap: 16px; }
-  .value-card {
+
+  /* polaroid-ish path cards */
+  .path-stack { position: relative; display: flex; flex-direction: column; gap: 14px; }
+  .path-card {
     background: var(--bg-base);
     border: 1px solid var(--soil-200);
     border-radius: var(--radius-md);
-    padding: 20px 24px;
-    display: flex; gap: 16px; align-items: flex-start;
-    transition: box-shadow 200ms var(--ease-default), transform 200ms var(--ease-spring);
+    padding: 18px 22px;
+    display: flex; gap: 16px; align-items: center;
+    box-shadow: var(--shadow-sm);
+    transition: transform 250ms var(--ease-spring), box-shadow 250ms;
   }
-  .value-card:hover { box-shadow: var(--shadow-sm); transform: translateY(-1px); }
-  .value-num {
-    font-family: var(--font-display);
-    font-size: 1.5rem; font-weight: 300; font-style: italic;
-    color: var(--canopy-300); line-height: 1; flex-shrink: 0;
-    width: 28px;
+  .path-card:hover { transform: translateX(6px); box-shadow: var(--shadow-md); }
+  .path-card:nth-child(1) { transform: rotate(-0.6deg); }
+  .path-card:nth-child(2) { transform: rotate(0.4deg); margin-left: 24px; }
+  .path-card:nth-child(3) { transform: rotate(-0.3deg); }
+  .path-card:nth-child(4) { transform: rotate(0.5deg); margin-left: 24px; }
+  .path-card:nth-child(1):hover, .path-card:nth-child(3):hover { transform: rotate(0deg) translateX(6px); }
+  .path-card:nth-child(2):hover, .path-card:nth-child(4):hover { transform: rotate(0deg) translateX(6px); }
+  .path-emoji {
+    width: 42px; height: 42px; flex-shrink: 0;
+    border-radius: var(--radius-sm);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 19px;
   }
-  .value-title {
-    font-size: 13px; font-weight: 500; color: var(--text-primary);
-    margin-bottom: 4px;
-  }
-  .value-text { font-size: 13px; color: var(--text-secondary); line-height: 1.55; font-weight: 300; }
+  .path-card:nth-child(1) .path-emoji { background: var(--soil-100); }
+  .path-card:nth-child(2) .path-emoji { background: var(--bloom-100); }
+  .path-card:nth-child(3) .path-emoji { background: var(--canopy-100); }
+  .path-card:nth-child(4) .path-emoji { background: var(--sun-100); }
+  .path-title { font-size: 14px; font-weight: 500; color: var(--text-primary); }
+  .path-text { font-size: 12.5px; color: var(--text-secondary); font-weight: 300; line-height: 1.5; }
 
   /* CONTACT */
   .contact-section {
     background: var(--bg-inverse);
-    padding: 100px 40px;
+    padding: 110px 40px;
     text-align: center;
+    position: relative; overflow: hidden;
   }
-  .contact-inner { max-width: 600px; margin: 0 auto; }
+  .contact-inner { max-width: 620px; margin: 0 auto; position: relative; z-index: 1; }
   .contact-eyebrow {
     font-family: var(--font-mono); font-size: 11px;
     letter-spacing: 0.12em; text-transform: uppercase;
@@ -364,7 +644,7 @@
   }
   .contact-heading em { font-style: italic; color: var(--canopy-300); }
   .contact-sub {
-    font-size: 15px; color: rgba(254,252,248,0.5);
+    font-size: 15px; color: rgba(254,252,248,0.55);
     font-weight: 300; margin-bottom: 40px; line-height: 1.6;
   }
   .contact-actions { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
@@ -406,20 +686,34 @@
     from { opacity: 0; transform: translateY(20px); }
     to { opacity: 1; transform: translateY(0); }
   }
+  .reveal {
+    opacity: 0; transform: translateY(20px);
+    transition: opacity 600ms var(--ease-out), transform 600ms var(--ease-out);
+  }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
 
   /* RESPONSIVE */
   @media (max-width: 900px) {
     nav { padding: 16px 20px; }
     .nav-links .nav-cta { display: none; }
-    .hero { padding: 100px 20px 60px; }
+    .hero { padding: 110px 20px 60px; }
     .hero-sub-row { flex-direction: column; gap: 24px; }
     .hero-tags-col { flex-direction: row; flex-wrap: wrap; }
+    .hero-badge { display: none; }
     .work-section { padding: 60px 20px; }
-    .case-card { grid-template-columns: 50px 1fr; gap: 16px; }
-    .case-meta { display: none; }
+    .case-card { grid-template-columns: 1fr; }
+    .case-thumb { padding: 28px 28px 0; }
+    .case-content { padding: 28px; }
+    .case-cta span { display: none; }
+    .ai-section { padding: 70px 20px; }
+    .ai-inner { grid-template-columns: 1fr; gap: 48px; }
+    .terminal { transform: none; }
+    .range-section { padding: 70px 20px; }
+    .range-grid { grid-template-columns: 1fr; }
+    .range-amp { display: none; }
     .about-strip { padding: 60px 20px; }
-    .about-inner { grid-template-columns: 1fr; gap: 40px; }
-    .contact-section { padding: 60px 20px; }
+    .about-inner { grid-template-columns: 1fr; gap: 48px; }
+    .contact-section { padding: 70px 20px; }
     footer { padding: 20px; flex-direction: column; gap: 12px; text-align: center; }
   }
 </style>
@@ -430,6 +724,7 @@
   <a href="index.html" class="nav-name">jenny.yue</a>
   <ul class="nav-links">
     <li><a href="#work">Work</a></li>
+    <li><a href="#ai">Building with AI</a></li>
     <li><a href="about.html">About</a></li>
     <li><a href="mailto:jennyyuedesign@gmail.com" class="nav-cta">Get in touch</a></li>
   </ul>
@@ -437,30 +732,49 @@
 
 <!-- HERO -->
 <section class="hero">
-  <p class="hero-eyebrow">Senior Product Designer & PM</p>
-  <h1 class="hero-headline">Designing for <em>people</em> — at any scale</h1>
+  <p class="hero-eyebrow">Senior Product Designer <span class="slash">/</span> Product Manager <span class="slash">/</span> Sydney</p>
+  <h1 class="hero-headline">I design products people rely on — then I <em>ship</em> <span class="squiggle-word">them.<svg viewBox="0 0 200 20" preserveAspectRatio="none"><path d="M3 13 Q 28 4, 52 11 T 100 11 T 148 11 T 197 9"/></svg></span></h1>
   <div class="hero-sub-row">
     <p class="hero-desc">
-      I'm Jenny — a product designer and manager based in Sydney. I design with <strong>empathy, build with systems thinking</strong>, and care deeply about what actually ships. My work spans enterprise SaaS, construction tech, brand, and beyond.
+      Hiya — I'm Jenny. I'm a product designer who also runs product: I lead the research, <strong>craft the experience, own the roadmap</strong> — and lately, build and ship my own features with Claude. I believe good design makes the world a little more connected, and a lot more equitable.
     </p>
     <div class="hero-tags-col">
-      <span class="hero-tag-item">Sydney, Australia</span>
-      <span class="hero-tag-item">UX · UI · Design Systems · PM</span>
-      <span class="hero-tag-item">Figma · Jira · Storybook</span>
+      <span class="hero-tag-item">Product Design · UX · Design Systems</span>
+      <span class="hero-tag-item">Product Management · Strategy</span>
+      <span class="hero-tag-item">Figma · Claude Code · Storybook</span>
     </div>
   </div>
+
+  <div class="hero-badge" aria-hidden="true">
+    <svg viewBox="0 0 130 130">
+      <defs>
+        <path id="badgeCircle" d="M 65,65 m -48,0 a 48,48 0 1,1 96,0 a 48,48 0 1,1 -96,0"/>
+      </defs>
+      <text><textPath href="#badgeCircle">design · build · ship · repeat ·&#160;</textPath></text>
+    </svg>
+    <div class="badge-center">✿</div>
+  </div>
+
   <div class="hero-scroll">
     <div class="scroll-line"></div>
     Scroll to explore
   </div>
 </section>
 
+<!-- MARQUEE -->
+<div class="marquee-strip" aria-hidden="true">
+  <div class="marquee-track">
+    <span>product design</span><span>design systems</span><span>user research</span><span>product strategy</span><span>AI agents</span><span>information architecture</span><span>brand identity</span><span>illustration</span><span>shipping code</span>
+    <span>product design</span><span>design systems</span><span>user research</span><span>product strategy</span><span>AI agents</span><span>information architecture</span><span>brand identity</span><span>illustration</span><span>shipping code</span>
+  </div>
+</div>
+
 <!-- WORK -->
 <div class="work-section" id="work">
   <div class="work-header">
     <div>
       <p class="work-eyebrow">Selected work</p>
-      <h2 class="work-heading">Case studies</h2>
+      <h2 class="work-heading">Case <em>studies</em></h2>
     </div>
     <span class="work-count">01 — 03</span>
   </div>
@@ -469,90 +783,235 @@
 
     <!-- Case 01: Sitemate -->
     <a href="sitemate.html" class="case-card">
-      <div class="case-num">01</div>
+      <div class="case-thumb">
+        <div class="case-thumb-inner">
+          <div class="mock-browser">
+            <div class="mock-browser-bar">
+              <span class="mock-dot" style="background:var(--bloom-300)"></span>
+              <span class="mock-dot" style="background:var(--sun-300)"></span>
+              <span class="mock-dot" style="background:var(--canopy-300)"></span>
+            </div>
+            <div class="mock-body">
+              <div class="mock-sidebar"><i></i><i></i><i></i><i></i><i></i></div>
+              <div class="mock-main">
+                <div class="mock-title-bar"></div>
+                <div class="mock-row"><span class="mock-cell w2"></span><span class="mock-cell"></span><span class="mock-chip"></span></div>
+                <div class="mock-row"><span class="mock-cell w2"></span><span class="mock-cell"></span><span class="mock-chip pink"></span></div>
+                <div class="mock-row"><span class="mock-cell w2"></span><span class="mock-cell"></span><span class="mock-chip"></span></div>
+                <div class="mock-row"><span class="mock-cell w2"></span><span class="mock-cell"></span><span class="mock-chip"></span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
       <div class="case-content">
+        <div class="case-top-row"><span class="case-num">01 / Sitemate · 2022 — now</span></div>
         <div class="case-tags-row">
           <span class="case-tag">Product Design</span>
-          <span class="case-tag">Product Management</span>
+          <span class="case-tag soil">Product Management</span>
           <span class="case-tag">Design Systems</span>
-          <span class="case-tag soil">Construction Tech</span>
         </div>
         <div class="case-title">Sitemate — designing for the people who build the world</div>
-        <p class="case-desc">From first design hire to product design manager — how I helped turn a construction tech startup into an enterprise platform, shipped features that doubled headcount, and led a team through one of the most complex areas of the product.</p>
-      </div>
-      <div class="case-meta">
-        <div class="case-stat">3x+</div>
-        <div class="case-stat-label">headcount<br>growth</div>
-        <div class="case-arrow">
-          <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M4 16L16 4M16 4H8M16 4v8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <p class="case-desc">From first design hire to product design manager — turning a construction tech startup into an enterprise platform, shipping across three product teams, and leading design through the most complex area of the product.</p>
+        <div class="case-foot">
+          <div class="case-stat-block">
+            <span class="case-stat">3x+</span>
+            <span class="case-stat-label">headcount growth</span>
+          </div>
+          <span class="case-cta">Read the case study
+            <span class="case-arrow"><svg width="18" height="18" viewBox="0 0 20 20" fill="none"><path d="M4 16L16 4M16 4H8M16 4v8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          </span>
         </div>
       </div>
     </a>
 
     <!-- Case 02: Design Systems -->
-    <div class="case-card-soon">
-      <div class="case-num" style="color:var(--soil-200)">02</div>
+    <div class="case-card case-card-soon">
+      <div class="case-thumb">
+        <div class="case-thumb-inner">
+          <div class="mock-components">
+            <div class="mock-comp"><i class="mock-swatch" style="background:var(--canopy-500)"></i><i class="bar-sm"></i></div>
+            <div class="mock-comp"><i class="mock-swatch" style="background:var(--canopy-200)"></i><i class="bar-sm"></i></div>
+            <div class="mock-comp"><i class="mock-swatch" style="background:var(--soil-300)"></i><i class="bar-sm"></i></div>
+            <div class="mock-comp"><i class="mock-btn-pill"></i><i class="bar-sm"></i></div>
+            <div class="mock-comp"><i class="mock-toggle"></i><i class="bar-sm"></i></div>
+            <div class="mock-comp"><i class="bar-lg"></i><i class="bar-sm"></i></div>
+          </div>
+        </div>
+      </div>
       <div class="case-content">
-        <span class="soon-badge">Coming soon</span>
-        <div class="case-title" style="font-size:1.3rem;color:var(--text-secondary)">Design systems at scale</div>
+        <div class="case-top-row"><span class="case-num">02 / Design systems</span><span class="soon-badge">Coming soon</span></div>
+        <div class="case-tags-row">
+          <span class="case-tag">Design Systems</span>
+          <span class="case-tag soil">Storybook</span>
+          <span class="case-tag">Accessibility</span>
+        </div>
+        <div class="case-title">Design systems at scale</div>
         <p class="case-desc">How a modular design system gave a fast-growing engineering team a shared language — and reduced the cost of change as the product evolved.</p>
       </div>
     </div>
 
-    <!-- Case 03: Speculative -->
-    <div class="case-card-soon">
-      <div class="case-num" style="color:var(--soil-200)">03</div>
+    <!-- Case 03: Shipping with Claude -->
+    <div class="case-card case-card-soon">
+      <div class="case-thumb">
+        <div class="case-thumb-inner">
+          <div class="mock-browser">
+            <div class="mock-browser-bar">
+              <span class="mock-dot" style="background:var(--bloom-300)"></span>
+              <span class="mock-dot" style="background:var(--sun-300)"></span>
+              <span class="mock-dot" style="background:var(--canopy-300)"></span>
+            </div>
+            <div class="mock-main" style="font-family:var(--font-mono);font-size:10.5px;line-height:2;padding:14px 16px;color:var(--text-secondary)">
+              <div><span style="color:var(--bloom-400)">&gt;</span> claude "ship it"</div>
+              <div style="color:var(--canopy-500)">✓ feature built</div>
+              <div style="color:var(--canopy-500)">✓ tests passing</div>
+              <div style="color:var(--sun-500)">→ merged to main</div>
+            </div>
+          </div>
+        </div>
+      </div>
       <div class="case-content">
-        <span class="soon-badge">Coming soon</span>
-        <div class="case-title" style="font-size:1.3rem;color:var(--text-secondary)">A problem worth solving</div>
-        <p class="case-desc">A self-initiated project exploring a real problem I care about — showing how I approach product design when there's no brief, no constraints, and everything to prove.</p>
+        <div class="case-top-row"><span class="case-num">03 / Designer × AI</span><span class="soon-badge">Coming soon</span></div>
+        <div class="case-tags-row">
+          <span class="case-tag bloom">AI Agents</span>
+          <span class="case-tag">Claude Code</span>
+          <span class="case-tag soil">Front-end</span>
+        </div>
+        <div class="case-title">From mockup to merged — shipping my own features with Claude</div>
+        <p class="case-desc">How I went from handing off designs to shipping them myself — building agents, pairing with Claude Code, and closing the gap between design intent and production code.</p>
       </div>
     </div>
 
   </div>
 </div>
 
+<!-- AI SECTION -->
+<section class="ai-section" id="ai">
+  <div class="ai-inner">
+    <div class="reveal">
+      <p class="ai-eyebrow">Designer × AI</p>
+      <h2 class="ai-heading">The handoff is dead.<br>I design it — <em>and build it.</em></h2>
+      <p class="ai-body">
+        AI changed what one designer can ship. I use <strong>Claude as a daily collaborator</strong> — not to replace craft, but to extend it past the Figma frame and into production.
+      </p>
+      <div class="ai-points">
+        <div class="ai-point">
+          <div class="ai-point-icon">⌘</div>
+          <p class="ai-point-text"><strong>I ship my own features.</strong> Front-end improvements I design go from mockup to merged — built hands-on with Claude Code, reviewed and released with the engineering team.</p>
+        </div>
+        <div class="ai-point">
+          <div class="ai-point-icon">✦</div>
+          <p class="ai-point-text"><strong>I build agents.</strong> Designing the prompts, tools, and guardrails that turn repetitive product work into something an agent handles — so the team can spend time on judgment, not busywork.</p>
+        </div>
+        <div class="ai-point">
+          <div class="ai-point-icon">▲</div>
+          <p class="ai-point-text"><strong>I prototype in real code.</strong> When a flow is too complex for a clickthrough, I build the real thing — testing with users on working software instead of smoke and mirrors.</p>
+        </div>
+        <div class="ai-point">
+          <div class="ai-point-icon">❋</div>
+          <p class="ai-point-text"><strong>Including this site.</strong> Designed by me, built in a pairing session with Claude — the same way I work every day.</p>
+        </div>
+      </div>
+    </div>
+    <div class="reveal">
+      <div class="terminal" aria-hidden="true">
+        <div class="terminal-bar">
+          <span class="mock-dot" style="background:var(--bloom-400)"></span>
+          <span class="mock-dot" style="background:var(--sun-300)"></span>
+          <span class="mock-dot" style="background:var(--canopy-300)"></span>
+          <span class="terminal-title">jenny@product — claude</span>
+        </div>
+        <div class="terminal-body">
+          <div><span class="t-prompt">❯</span> <span class="t-cmd">claude</span> <span class="t-dim">"build the list filter UI from my Figma spec"</span></div>
+          <div><span class="t-green">✓</span> <span class="t-dim">Read design tokens · matched component patterns</span></div>
+          <div><span class="t-green">✓</span> <span class="t-dim">Built FilterBar.tsx · 4 states · keyboard accessible</span></div>
+          <div><span class="t-green">✓</span> <span class="t-dim">Tests passing · Storybook story added</span></div>
+          <div><span class="t-yellow">→</span> <span class="t-cmd">PR opened</span> <span class="t-dim">— design debt: 0 · handoffs: 0</span></div>
+          <div><span class="t-prompt">❯</span> <span class="t-cursor"></span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- RANGE -->
+<section class="range-section" id="range">
+  <div class="range-header reveal">
+    <p class="range-eyebrow">Two hats, one outcome</p>
+    <h2 class="range-heading">Designer first.<br>Product manager <em>when it counts.</em></h2>
+    <p class="range-sub">My title says both because my work does both. The craft makes the product feel right; the product thinking makes sure it's the right product.</p>
+  </div>
+  <div class="range-grid reveal">
+    <div class="range-col designer">
+      <p class="range-col-label">As a designer</p>
+      <h3 class="range-col-title">I sweat the <em>craft</em></h3>
+      <ul class="range-list">
+        <li>End-to-end product design — research, flows, prototypes, polished UI across web and mobile</li>
+        <li>Design systems people actually adopt — components, patterns, Storybook, WCAG 2.1</li>
+        <li>Information architecture that makes complex products legible to the whole team</li>
+        <li>User interviews and usability testing as a habit, not a phase</li>
+        <li>Visual craft from a background in brand, illustration, and interior architecture</li>
+      </ul>
+    </div>
+    <div class="range-amp">&amp;</div>
+    <div class="range-col pm">
+      <p class="range-col-label">As a product manager</p>
+      <h3 class="range-col-title">I own the <em>outcome</em></h3>
+      <ul class="range-list">
+        <li>Roadmaps and quarterly planning co-owned with founders — strategy translated into shippable work</li>
+        <li>Built the foundation that took a product to $1M ARR</li>
+        <li>Stabilised the module behind 70% of support issues while onboarding a new team</li>
+        <li>Prioritisation under real constraints — deadlines, migrations, competing teams</li>
+        <li>Hiring and mentoring — led recruitment of 10 designers and grew them toward product leadership</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
 <!-- ABOUT STRIP -->
 <div class="about-strip">
   <div class="about-inner">
-    <div class="about-left">
+    <div class="reveal">
       <p class="about-eyebrow">A bit about me</p>
-      <h2 class="about-heading">Design is how I<br>make sense of<br><em>the world</em></h2>
+      <h2 class="about-heading">A non-linear path,<br>on <em>purpose</em></h2>
       <p class="about-body">
-        I started in interior architecture, moved into graphic design, and found my home in product. That non-linear path isn't something I explain away — it's <strong>what makes me different</strong>. I see problems spatially, think about systems before screens, and bring a level of craft to product work that comes from years of caring about how things look and feel.
+        I started in interior architecture, moved through graphic design and brand, and found my home in product. I never explain that away — it's <strong>what makes me different</strong>. I see problems spatially, think in systems before screens, and bring a level of visual craft to product work that comes from years of caring how things look <em>and</em> feel.
+      </p>
+      <p class="about-body">
+        The thread through all of it: <strong>interactive, inclusive design</strong> — products that work for everyone, built by teams that enjoy building them.
       </p>
       <a href="about.html" class="about-link">
-        Full background & experience
+        Full background &amp; experience
         <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
       </a>
     </div>
-    <div class="about-right">
-      <div class="value-card">
-        <div class="value-num">1</div>
+    <div class="path-stack reveal">
+      <div class="path-card">
+        <div class="path-emoji">📐</div>
         <div>
-          <div class="value-title">Empathy as precision</div>
-          <div class="value-text">Understanding users deeply isn't a soft skill — it's the most precise tool a designer has. Especially when those users are working in high-stakes environments.</div>
+          <div class="path-title">Interior architecture</div>
+          <div class="path-text">Where I learned to think spatially and design for how people actually move through a system.</div>
         </div>
       </div>
-      <div class="value-card">
-        <div class="value-num">2</div>
+      <div class="path-card">
+        <div class="path-emoji">🎨</div>
         <div>
-          <div class="value-title">Systems before screens</div>
-          <div class="value-text">I build components, patterns, and IA that give teams a shared language. Good systems reduce the cost of change and make the whole team move faster.</div>
+          <div class="path-title">Brand &amp; illustration</div>
+          <div class="path-text">Logos, identities, and commissions as jennyyuedesign — where the visual craft was sharpened.</div>
         </div>
       </div>
-      <div class="value-card">
-        <div class="value-num">3</div>
+      <div class="path-card">
+        <div class="path-emoji">🏗️</div>
         <div>
-          <div class="value-title">Ownership over output</div>
-          <div class="value-text">I care about what ships, not just what I design. That means staying close to engineering, triaging real issues, and iterating on what users actually do.</div>
+          <div class="path-title">Product design &amp; PM</div>
+          <div class="path-text">First design hire at Sitemate — enterprise SaaS for the people who build the physical world.</div>
         </div>
       </div>
-      <div class="value-card">
-        <div class="value-num">4</div>
+      <div class="path-card">
+        <div class="path-emoji">🤖</div>
         <div>
-          <div class="value-title">Scale thinking</div>
-          <div class="value-text">I don't design for one user. I ask how a single decision plays out across a hundred different contexts — roles, devices, levels of technical literacy.</div>
+          <div class="path-title">Designer who ships</div>
+          <div class="path-text">Building agents and shipping my own features with Claude — the newest chapter.</div>
         </div>
       </div>
     </div>
@@ -564,7 +1023,7 @@
   <div class="contact-inner">
     <p class="contact-eyebrow">Get in touch</p>
     <h2 class="contact-heading">Let's build something<br><em>worth building</em></h2>
-    <p class="contact-sub">Open to freelance projects, senior product design roles, and conversations about work that genuinely improves people's lives.</p>
+    <p class="contact-sub">Open to senior product design and product roles — and conversations about work that genuinely improves people's lives.</p>
     <div class="contact-actions">
       <a href="mailto:jennyyuedesign@gmail.com" class="btn-contact-primary">
         Send an email
@@ -578,7 +1037,7 @@
 
 <footer>
   <div class="footer-name">jenny.yue</div>
-  <div class="footer-copy">© 2026 · jennyyuez.github.io</div>
+  <div class="footer-copy">© 2026 · designed by jenny, built with claude</div>
   <div class="footer-links">
     <a href="#work">Work</a>
     <a href="about.html">About</a>
@@ -587,23 +1046,16 @@
 </footer>
 
 <script>
-  // Scroll reveal for case cards
+  // Scroll reveal
   const observer = new IntersectionObserver((entries) => {
     entries.forEach((entry, i) => {
       if (entry.isIntersecting) {
         setTimeout(() => entry.target.classList.add('visible'), i * 100);
+        observer.unobserve(entry.target);
       }
     });
   }, { threshold: 0.1 });
-  document.querySelectorAll('.case-card').forEach(el => observer.observe(el));
-
-  // Active nav on scroll
-  window.addEventListener('scroll', () => {
-    const nav = document.querySelector('nav');
-    nav.style.borderBottomColor = window.scrollY > 20
-      ? 'var(--canopy-200)'
-      : 'transparent';
-  });
+  document.querySelectorAll('.case-card, .reveal').forEach(el => observer.observe(el));
 </script>
 
 </body>
