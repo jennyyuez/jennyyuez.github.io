@@ -146,6 +146,16 @@
     animation: drawSquiggle 1s 1s var(--ease-out) forwards;
   }
   @keyframes drawSquiggle { to { stroke-dashoffset: 0; } }
+  .wave {
+    display: inline-block; font-size: 0.55em; vertical-align: baseline;
+    animation: waveAnim 2.2s 1.2s ease-in-out 2;
+    transform-origin: 70% 70%;
+  }
+  @keyframes waveAnim {
+    0%, 100% { transform: rotate(0); }
+    20%, 60% { transform: rotate(16deg); }
+    40%, 80% { transform: rotate(-8deg); }
+  }
 
   .hero-sub-row {
     display: flex; gap: 48px; align-items: flex-start;
@@ -742,11 +752,11 @@
 
 <!-- HERO -->
 <section class="hero">
-  <p class="hero-eyebrow">Sydney — Australia</p>
-  <h1 class="hero-headline">Hiya, I'm <span class="squiggle-word"><em>Jenny</em><svg viewBox="0 0 200 20" preserveAspectRatio="none"><path d="M3 13 Q 28 4, 52 11 T 100 11 T 148 11 T 197 9"/></svg></span></h1>
+  <p class="hero-eyebrow">Senior Product Designer <span class="slash">/</span> Product Manager <span class="slash">/</span> Sydney</p>
+  <h1 class="hero-headline">Hiya, I'm Jenny <span class="wave">👋</span><br>Designing a more <span class="squiggle-word"><em>equitable</em><svg viewBox="0 0 200 20" preserveAspectRatio="none"><path d="M3 13 Q 28 4, 52 11 T 100 11 T 148 11 T 197 9"/></svg></span> world.</h1>
   <div class="hero-sub-row">
     <p class="hero-desc">
-      A senior product designer who also runs product — I lead the research, <strong>craft the experience, own the roadmap</strong>, and ship my own features with Claude. I believe good design makes the world a little more connected, and a lot more equitable.
+      Designer first, product manager when it counts. I lead the research, <strong>craft the experience, own the roadmap</strong> — and build my own features with Claude. Good design, to me, makes complex things feel human.
     </p>
     <div class="hero-tags-col">
       <span class="hero-tag-item">Product Design · UX · Design Systems</span>
