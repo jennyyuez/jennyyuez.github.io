@@ -25,7 +25,8 @@
   html{scroll-behavior:smooth}
   body{background:var(--bg-base);color:var(--text-primary);font-family:var(--font-body);font-size:15px;line-height:1.7;-webkit-font-smoothing:antialiased}
 
-  nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:20px 40px;display:flex;justify-content:space-between;align-items:center;background:rgba(254,252,248,0.92);backdrop-filter:blur(16px);border-bottom:1px solid var(--canopy-200)}
+  nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:20px 40px;background:rgba(254,252,248,0.92);backdrop-filter:blur(16px);border-bottom:1px solid var(--canopy-200)}
+  .nav-inner{max-width:1200px;margin:0 auto;display:flex;justify-content:space-between;align-items:center}
   .nav-name{font-family:var(--font-display);font-size:17px;font-weight:500;color:var(--text-primary);text-decoration:none;letter-spacing:-0.01em}
   .nav-links{display:flex;gap:32px;list-style:none;align-items:center}
   .nav-links a{font-size:13px;color:var(--text-secondary);text-decoration:none;font-weight:400;letter-spacing:0.02em;transition:color 150ms}
@@ -36,9 +37,9 @@
   .hero{padding:140px 40px 72px;max-width:1200px;margin:0 auto}
   .hero-eyebrow{font-family:var(--font-mono);font-size:11px;font-weight:500;letter-spacing:0.12em;text-transform:uppercase;color:var(--canopy-500);margin-bottom:24px;display:flex;align-items:center;gap:10px;opacity:0;animation:fadeUp 0.6s 0.1s var(--ease-out) forwards}
   .hero-eyebrow::before{content:'';width:24px;height:1px;background:var(--canopy-400)}
-  .hero-title{font-family:var(--font-display);font-size:clamp(2.8rem,6vw,5.5rem);font-weight:500;line-height:1.05;color:var(--text-primary);letter-spacing:-0.03em;max-width:860px;margin-bottom:28px;opacity:0;animation:fadeUp 0.7s 0.2s var(--ease-out) forwards}
+  .hero-title{font-family:var(--font-display);font-size:clamp(2.8rem,6vw,5.5rem);font-weight:500;line-height:1.05;color:var(--text-primary);letter-spacing:-0.03em;max-width:1100px;margin-bottom:28px;opacity:0;animation:fadeUp 0.7s 0.2s var(--ease-out) forwards}
   .hero-title em{font-style:italic;color:var(--canopy-500)}
-  .hero-sub{font-size:17px;color:var(--text-secondary);line-height:1.65;font-weight:300;max-width:560px;margin-bottom:48px;opacity:0;animation:fadeUp 0.7s 0.3s var(--ease-out) forwards}
+  .hero-sub{font-size:17px;color:var(--text-secondary);line-height:1.65;font-weight:300;max-width:680px;margin-bottom:48px;opacity:0;animation:fadeUp 0.7s 0.3s var(--ease-out) forwards}
 
   .stat-row{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--soil-200);border:1px solid var(--soil-200);border-radius:var(--radius-md);overflow:hidden;opacity:0;animation:fadeUp 0.7s 0.4s var(--ease-out) forwards}
   .stat-cell{background:var(--bg-base);padding:28px 24px;display:flex;flex-direction:column;gap:6px}
@@ -46,7 +47,7 @@
   .stat-label{font-family:var(--font-mono);font-size:10px;color:var(--text-tertiary);letter-spacing:0.06em;line-height:1.4}
 
   .meta-bar{background:var(--bg-inverse);padding:28px 40px}
-  .meta-inner{max-width:1200px;margin:0 auto;display:flex;gap:48px;flex-wrap:wrap}
+  .meta-inner{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:repeat(5,minmax(0,auto));justify-content:space-between;gap:24px}
   .meta-label{font-family:var(--font-mono);font-size:10px;text-transform:uppercase;letter-spacing:0.1em;color:var(--canopy-300);margin-bottom:4px}
   .meta-value{font-size:13px;color:var(--canopy-100);font-weight:400}
 
@@ -178,7 +179,7 @@
   .fb-input::after{content:'';position:absolute;left:7px;top:7px;width:40%;height:7px;border-radius:3px;background:var(--soil-100)}
 
   /* video embed */
-  .video-frame{position:relative;max-width:760px;margin:36px auto 0;border:1px solid var(--soil-200);border-radius:var(--radius-lg);overflow:hidden;background:var(--bg-subtle);box-shadow:var(--shadow-md);aspect-ratio:16/10}
+  .video-frame{position:relative;max-width:760px;margin:36px auto 0;border:1px solid var(--soil-200);border-radius:var(--radius-lg);overflow:hidden;background:var(--bg-subtle);box-shadow:var(--shadow-md);aspect-ratio:16/9}
   .video-frame iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
   .video-caption{max-width:760px;margin:12px auto 0}
   .video-fallback{font-size:13px;color:var(--canopy-600);font-weight:500;text-decoration:none;border-bottom:1px solid var(--canopy-200)}
@@ -193,7 +194,8 @@
   .reflections-body{font-size:15px;color:rgba(254,252,248,0.6);line-height:1.75;font-weight:300;margin-bottom:20px}
   .reflections-body strong{color:var(--canopy-100);font-weight:500}
 
-  footer{background:var(--bg-inverse);border-top:1px solid rgba(255,255,255,0.06);padding:24px 40px;display:flex;justify-content:space-between;align-items:center}
+  footer{background:var(--bg-inverse);border-top:1px solid rgba(255,255,255,0.06);padding:24px 40px}
+  .footer-inner{max-width:1200px;margin:0 auto;display:flex;justify-content:space-between;align-items:center}
   .footer-name{font-family:var(--font-display);font-size:15px;color:var(--canopy-200);font-weight:500}
   .footer-copy{font-family:var(--font-mono);font-size:11px;color:rgba(254,252,248,0.3);letter-spacing:0.04em}
   .footer-links{display:flex;gap:24px}
@@ -207,7 +209,8 @@
     .nav-cta{display:none}
     .hero{padding:100px 20px 48px}
     .stat-row{grid-template-columns:1fr 1fr}
-    .meta-bar{padding:24px 20px;gap:24px}
+    .meta-bar{padding:24px 20px}
+    .meta-inner{grid-template-columns:1fr 1fr;gap:20px}
     main{padding:0 20px 60px}
     .two-col{grid-template-columns:1fr;gap:32px}
     .systems-grid{grid-template-columns:1fr}
@@ -222,20 +225,23 @@
     .feature-body{padding:24px}
     .feature-header{padding:20px 24px}
     .reflections-section{padding:60px 20px}
-    footer{padding:20px;flex-direction:column;gap:12px;text-align:center}
+    footer{padding:20px}
+    .footer-inner{flex-direction:column;gap:12px;text-align:center}
   }
 </style>
 </head>
 <body>
 
 <nav>
-  <a href="index.html" class="nav-name">jenny.yue</a>
-  <ul class="nav-links">
-    <li><a href="index.html#work">Work</a></li>
-    <li><a href="index.html#ai">Building with AI</a></li>
-    <li><a href="about.html">About</a></li>
-    <li><a href="mailto:jennyyuedesign@gmail.com" class="nav-cta">Get in touch</a></li>
-  </ul>
+  <div class="nav-inner">
+    <a href="index.html" class="nav-name">jenny.yue</a>
+    <ul class="nav-links">
+      <li><a href="index.html#work">Work</a></li>
+      <li><a href="index.html#ai">Building with AI</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="mailto:jennyyuedesign@gmail.com" class="nav-cta">Get in touch</a></li>
+    </ul>
+  </div>
 </nav>
 
 <div class="hero">
@@ -527,7 +533,7 @@
     <div class="video-frame">
       <iframe src="https://www.linkedin.com/embed/feed/update/urn:li:ugcPost:7466956473026154497?compact=1" title="Sitemate enters the AI era — founder announcement" allowfullscreen></iframe>
     </div>
-    <p class="shot-caption video-caption">Watch: Sitemate's founder announcing the AI era of the platform.&ensp;<a class="video-fallback" href="https://www.linkedin.com/posts/hartleypike_today-im-sending-sitemate-into-the-ai-era-ugcPost-7466956473026154497-gPub" target="_blank" rel="noopener">If the player doesn't load, watch on LinkedIn &rarr;</a></p>
+    <p class="shot-caption video-caption">Watch: Sitemate's founder announcing the AI era of the platform — <a class="video-fallback" href="https://www.linkedin.com/posts/hartleypike_today-im-sending-sitemate-into-the-ai-era-ugcPost-7466956473026154497-gPub" target="_blank" rel="noopener">on LinkedIn&nbsp;&rarr;</a></p>
   </section>
 
 </main>
@@ -543,13 +549,15 @@
 </section>
 
 <footer>
-  <div class="footer-name">jenny.yue</div>
-  <div class="footer-copy">&copy; 2026 &middot; jennyyuez.github.io</div>
-  <div class="footer-links">
-    <a href="index.html">Home</a>
-    <a href="index.html#work">Work</a>
-    <a href="about.html">About</a>
-    <a href="mailto:jennyyuedesign@gmail.com">Contact</a>
+  <div class="footer-inner">
+    <div class="footer-name">jenny.yue</div>
+    <div class="footer-copy">&copy; 2026 &middot; jennyyuez.github.io</div>
+    <div class="footer-links">
+      <a href="index.html">Home</a>
+      <a href="index.html#work">Work</a>
+      <a href="about.html">About</a>
+      <a href="mailto:jennyyuedesign@gmail.com">Contact</a>
+    </div>
   </div>
 </footer>
 

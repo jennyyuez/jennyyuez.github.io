@@ -71,10 +71,13 @@
   nav {
     position: fixed; top: 0; left: 0; right: 0; z-index: 100;
     padding: 20px 40px;
-    display: flex; justify-content: space-between; align-items: center;
     background: rgba(254,252,248,0.92);
     backdrop-filter: blur(16px);
     border-bottom: 1px solid var(--canopy-200);
+  }
+  .nav-inner {
+    max-width: 1200px; margin: 0 auto;
+    display: flex; justify-content: space-between; align-items: center;
   }
   .nav-name {
     font-family: var(--font-display);
@@ -473,7 +476,7 @@
     line-height: 1.75; font-weight: 300; margin-bottom: 28px;
     max-width: 480px;
   }
-  .ai-body strong { color: var(--text-inverse); font-weight: 500; }
+  .ai-body strong { color: var(--sun-300); font-weight: 500; }
   .ai-points { display: flex; flex-direction: column; gap: 14px; }
   .ai-point { display: flex; gap: 14px; align-items: flex-start; }
   .ai-point-icon {
@@ -482,10 +485,11 @@
     background: rgba(143,204,159,0.12);
     border: 1px solid rgba(143,204,159,0.3);
     display: flex; align-items: center; justify-content: center;
-    font-size: 12px;
+    font-size: 12px; line-height: 1;
+    color: var(--canopy-300);
   }
   .ai-point-text { font-size: 14px; color: rgba(254,252,248,0.75); line-height: 1.6; font-weight: 300; }
-  .ai-point-text strong { color: var(--text-inverse); font-weight: 500; }
+  .ai-point-text strong { color: var(--sun-300); font-weight: 500; }
 
   /* terminal mock */
   .terminal {
@@ -716,6 +720,9 @@
     background: var(--bg-inverse);
     border-top: 1px solid rgba(255,255,255,0.06);
     padding: 24px 40px;
+  }
+  .footer-inner {
+    max-width: 1200px; margin: 0 auto;
     display: flex; justify-content: space-between; align-items: center;
   }
   .footer-name { font-family: var(--font-display); font-size: 15px; color: var(--canopy-200); font-weight: 500; }
@@ -757,20 +764,23 @@
     .about-strip { padding: 60px 20px; }
     .about-inner { grid-template-columns: 1fr; gap: 48px; }
     .contact-section { padding: 70px 20px; }
-    footer { padding: 20px; flex-direction: column; gap: 12px; text-align: center; }
+    footer { padding: 20px; }
+    .footer-inner { flex-direction: column; gap: 12px; text-align: center; }
   }
 </style>
 </head>
 <body>
 
 <nav>
-  <a href="index.html" class="nav-name">jenny.yue</a>
-  <ul class="nav-links">
-    <li><a href="#work">Work</a></li>
-    <li><a href="#ai">Building with AI</a></li>
-    <li><a href="about.html">About</a></li>
-    <li><a href="mailto:jennyyuedesign@gmail.com" class="nav-cta">Get in touch</a></li>
-  </ul>
+  <div class="nav-inner">
+    <a href="index.html" class="nav-name">jenny.yue</a>
+    <ul class="nav-links">
+      <li><a href="#work">Work</a></li>
+      <li><a href="#ai">Building with AI</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="mailto:jennyyuedesign@gmail.com" class="nav-cta">Get in touch</a></li>
+    </ul>
+  </div>
 </nav>
 
 <!-- HERO -->
@@ -1090,12 +1100,14 @@
 </section>
 
 <footer>
-  <div class="footer-name">jenny.yue</div>
-  <div class="footer-copy">© 2026 · designed by jenny, built with claude</div>
-  <div class="footer-links">
-    <a href="#work">Work</a>
-    <a href="about.html">About</a>
-    <a href="mailto:jennyyuedesign@gmail.com">Contact</a>
+  <div class="footer-inner">
+    <div class="footer-name">jenny.yue</div>
+    <div class="footer-copy">© 2026 · designed by jenny, built with claude</div>
+    <div class="footer-links">
+      <a href="#work">Work</a>
+      <a href="about.html">About</a>
+      <a href="mailto:jennyyuedesign@gmail.com">Contact</a>
+    </div>
   </div>
 </footer>
 
