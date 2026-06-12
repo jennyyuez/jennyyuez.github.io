@@ -89,7 +89,7 @@
     border-bottom: 1px solid var(--canopy-200);
   }
   .nav-inner {
-    max-width: 1200px; margin: 0 auto;
+    max-width: 1120px; margin: 0 auto;
     display: flex; justify-content: space-between; align-items: center;
   }
   .nav-name {
@@ -465,7 +465,7 @@
     padding: 24px 40px;
   }
   .footer-inner {
-    max-width: 1200px; margin: 0 auto;
+    max-width: 1120px; margin: 0 auto;
     display: flex; justify-content: space-between; align-items: center;
   }
   .footer-name { font-family: var(--font-display); font-size: 15px; color: var(--canopy-200); font-weight: 500; }
@@ -501,8 +501,10 @@
     .footer-inner { flex-direction: column; gap: 12px; text-align: center; }
   }
 </style>
+<link rel="stylesheet" href="theme.css">
 </head>
 <body>
+<script>(function(){try{var t=localStorage.getItem('theme');if(t==='dark'||(!t&&matchMedia('(prefers-color-scheme: dark)').matches))document.body.classList.add('dark')}catch(e){}})()</script>
 
 <!-- NAV -->
 <nav>
@@ -512,7 +514,8 @@
       <li><a href="index.html#work">Work</a></li>
       <li><a href="index.html#ai">Building with AI</a></li>
       <li><a href="about.html" class="active">About</a></li>
-      <li><a href="mailto:jennyyuedesign@gmail.com">Contact</a></li>
+      <li><button class="mode-toggle" aria-label="Switch between light and neon mode"><span class="mt-label l-light">light</span><span class="mt-switch"></span><span class="mt-label l-neon">neon</span></button></li>
+    <li><a href="mailto:jennyyuedesign@gmail.com">Contact</a></li>
     </ul>
   </div>
 </nav>
@@ -844,6 +847,11 @@
   document.querySelectorAll('.exp-item').forEach(el => observer.observe(el));
 
 
+
+  document.querySelectorAll('.mode-toggle').forEach(b => b.addEventListener('click', () => {
+    const dark = document.body.classList.toggle('dark');
+    try { localStorage.setItem('theme', dark ? 'dark' : 'light'); } catch (e) {}
+  }));
 </script>
 
 </body>

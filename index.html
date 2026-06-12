@@ -76,7 +76,7 @@
     border-bottom: 1px solid var(--canopy-200);
   }
   .nav-inner {
-    max-width: 1200px; margin: 0 auto;
+    max-width: 1120px; margin: 0 auto;
     display: flex; justify-content: space-between; align-items: center;
   }
   .nav-name {
@@ -453,7 +453,7 @@
     overflow: hidden;
   }
   .ai-inner {
-    max-width: 1200px; margin: 0 auto;
+    max-width: 1120px; margin: 0 auto;
     display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center;
   }
   .ai-eyebrow {
@@ -605,7 +605,7 @@
     padding: 100px 40px;
   }
   .about-inner {
-    max-width: 1200px; margin: 0 auto;
+    max-width: 1120px; margin: 0 auto;
     display: grid; grid-template-columns: 1.1fr 1fr; gap: 80px; align-items: center;
   }
   .about-eyebrow {
@@ -722,7 +722,7 @@
     padding: 24px 40px;
   }
   .footer-inner {
-    max-width: 1200px; margin: 0 auto;
+    max-width: 1120px; margin: 0 auto;
     display: flex; justify-content: space-between; align-items: center;
   }
   .footer-name { font-family: var(--font-display); font-size: 15px; color: var(--canopy-200); font-weight: 500; }
@@ -768,8 +768,10 @@
     .footer-inner { flex-direction: column; gap: 12px; text-align: center; }
   }
 </style>
+<link rel="stylesheet" href="theme.css">
 </head>
 <body>
+<script>(function(){try{var t=localStorage.getItem('theme');if(t==='dark'||(!t&&matchMedia('(prefers-color-scheme: dark)').matches))document.body.classList.add('dark')}catch(e){}})()</script>
 
 <nav>
   <div class="nav-inner">
@@ -778,7 +780,8 @@
       <li><a href="#work">Work</a></li>
       <li><a href="#ai">Building with AI</a></li>
       <li><a href="about.html">About</a></li>
-      <li><a href="mailto:jennyyuedesign@gmail.com" class="nav-cta">Get in touch</a></li>
+      <li><button class="mode-toggle" aria-label="Switch between light and neon mode"><span class="mt-label l-light">light</span><span class="mt-switch"></span><span class="mt-label l-neon">neon</span></button></li>
+    <li><a href="mailto:jennyyuedesign@gmail.com" class="nav-cta">Get in touch</a></li>
     </ul>
   </div>
 </nav>
@@ -1122,6 +1125,11 @@
     });
   }, { threshold: 0.1 });
   document.querySelectorAll('.case-card, .reveal').forEach(el => observer.observe(el));
+
+  document.querySelectorAll('.mode-toggle').forEach(b => b.addEventListener('click', () => {
+    const dark = document.body.classList.toggle('dark');
+    try { localStorage.setItem('theme', dark ? 'dark' : 'light'); } catch (e) {}
+  }));
 </script>
 
 </body>
