@@ -581,7 +581,7 @@
     const dark = document.body.classList.toggle('dark');
     try { localStorage.setItem('theme', dark ? 'dark' : 'light'); } catch (e) {}
     clearTimeout(window.__themeFade);
-    window.__themeFade = setTimeout(() => document.body.classList.remove('theme-transition'), 700);
+    window.__themeFade = setTimeout(() => document.body.classList.remove('theme-transition'), 1000);
   }));
 </script>
 </body>

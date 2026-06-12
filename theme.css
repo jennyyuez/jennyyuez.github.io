@@ -5,7 +5,7 @@
    fixes for hardcoded colours inside illustrations.
    ───────────────────────────────────────────────────────────── */
 
-body { transition: background 400ms ease, color 400ms ease; }
+body { transition: background 900ms ease, color 900ms ease; }
 
 /* spinning flower mark next to the wordmark (all pages) */
 .nav-name{display:inline-flex;align-items:center;gap:8px}
@@ -81,7 +81,7 @@ body.dark ::selection{background:var(--bloom-400);color:#0B0F1E}
 .hero{position:relative}
 .hero::before{
   content:'';position:absolute;inset:0;pointer-events:none;z-index:-1;
-  opacity:0;transition:opacity 600ms ease;
+  opacity:0;transition:opacity 900ms ease;
   background:
     radial-gradient(ellipse 55% 45% at 75% 15%,rgba(255,77,166,0.10),transparent 62%),
     radial-gradient(ellipse 50% 45% at 15% 85%,rgba(92,255,154,0.08),transparent 60%),
@@ -96,7 +96,7 @@ body.dark .hero::before{opacity:1}
 /* CRT scanlines + vignette (kept subtle) — always present, fades in */
 body::after{
   content:'';position:fixed;inset:0;pointer-events:none;z-index:9000;
-  opacity:0;transition:opacity 600ms ease;
+  opacity:0;transition:opacity 900ms ease;
   background:
     repeating-linear-gradient(0deg,rgba(0,0,0,0.10) 0 1px,transparent 1px 3px),
     radial-gradient(ellipse 120% 100% at 50% 50%,transparent 62%,rgba(0,0,0,0.30));
@@ -109,9 +109,9 @@ body.theme-transition,
 body.theme-transition *,
 body.theme-transition *::before,
 body.theme-transition *::after{
-  transition:background-color 600ms ease,background 600ms ease,color 600ms ease,
-    border-color 600ms ease,box-shadow 600ms ease,text-shadow 600ms ease,
-    fill 600ms ease,stroke 600ms ease,opacity 600ms ease !important;
+  transition:background-color 900ms ease,background 900ms ease,color 900ms ease,
+    border-color 900ms ease,box-shadow 900ms ease,text-shadow 900ms ease,
+    fill 900ms ease,stroke 900ms ease,opacity 900ms ease !important;
 }
 
 /* white illustration surfaces → dark panels */
