@@ -430,8 +430,12 @@
     transition: transform 200ms var(--ease-spring), opacity 200ms;
     display: inline-flex;
   }
-  .case-card-soon { opacity: 1; }
+  /* coming-soon card is informational, not clickable */
+  .case-card-soon { opacity: 1; cursor: default; }
+  .case-card-soon:hover { box-shadow: none; border-color: var(--soil-200); }
+  .case-card-soon:hover .case-thumb-inner { transform: none; }
   .case-card-soon .case-thumb-inner { opacity: 0.55; }
+  .case-card-soon .case-title { color: var(--text-secondary); }
   .soon-badge {
     font-family: var(--font-mono); font-size: 10px;
     letter-spacing: 0.08em; text-transform: uppercase;
@@ -1122,8 +1126,11 @@
   document.querySelectorAll('.case-card, .reveal').forEach(el => observer.observe(el));
 
   document.querySelectorAll('.mode-toggle').forEach(b => b.addEventListener('click', () => {
+    document.body.classList.add('theme-transition');
     const dark = document.body.classList.toggle('dark');
     try { localStorage.setItem('theme', dark ? 'dark' : 'light'); } catch (e) {}
+    clearTimeout(window.__themeFade);
+    window.__themeFade = setTimeout(() => document.body.classList.remove('theme-transition'), 700);
   }));
 </script>
 
