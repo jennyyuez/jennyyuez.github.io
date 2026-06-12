@@ -7,6 +7,17 @@
 
 body { transition: background 400ms ease, color 400ms ease; }
 
+/* spinning flower mark next to the wordmark (all pages) */
+.nav-name{display:inline-flex;align-items:center;gap:8px}
+.nav-name::before{
+  content:'\2740';
+  color:var(--bloom-400);
+  font-size:14px;line-height:1;
+  animation:flowerSpin 7s linear infinite;
+}
+body.dark .nav-name::before{text-shadow:0 0 10px rgba(255,77,166,0.6)}
+@keyframes flowerSpin{to{transform:rotate(360deg)}}
+
 body.dark{
   /* core surfaces */
   --bg-base:#0B0F1E;
