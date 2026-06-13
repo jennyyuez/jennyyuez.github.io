@@ -791,7 +791,7 @@
   body.dark #boot::after { background:repeating-linear-gradient(0deg,rgba(0,0,0,0.16) 0 2px,transparent 2px 5px); }
   .b-meta { font-size:10px; letter-spacing:0.24em; color:var(--ld-meta); text-transform:uppercase; }
   .b-p1 { font-family:'JetBrains Mono',monospace; font-weight:500; font-size:11px; color:var(--ld-p1); letter-spacing:0.14em; text-transform:uppercase; animation:bBlink 1.2s steps(1) infinite; }
-  .b-screen { position:relative; width:188px; height:158px; border:3px solid var(--ld-bd); border-radius:6px;
+  .b-screen { position:relative; width:188px; height:158px; border:3px solid var(--ld-bd); border-radius:16px;
     background:var(--ld-screen); box-shadow:0 0 22px var(--ld-glow), inset 0 0 18px rgba(0,0,0,0.25);
     display:flex; align-items:center; justify-content:center; overflow:hidden; }
   .b-screen::before { content:''; position:absolute; inset:0; z-index:3; pointer-events:none;
@@ -824,8 +824,8 @@
   @keyframes bSpin { from{transform:rotate(0)} to{transform:rotate(360deg)} }
   .b-status { font-family:'JetBrains Mono',monospace; font-weight:500; font-size:12px; color:var(--ld-text); letter-spacing:0.04em; min-height:18px; text-align:center; text-transform:lowercase; }
   .b-status.go { color:var(--ld-bd); font-size:16px; text-shadow:0 0 16px var(--ld-glow); }
-  .b-bar { display:flex; gap:4px; padding:5px; border:2px solid var(--ld-bd); box-shadow:0 0 14px var(--ld-glow); }
-  .b-seg { width:14px; height:16px; background:var(--ld-seg-off); }
+  .b-bar { display:flex; gap:4px; padding:6px 8px; border:2px solid var(--ld-bd); border-radius:12px; box-shadow:0 0 14px var(--ld-glow); }
+  .b-seg { width:13px; height:16px; border-radius:3px; background:var(--ld-seg-off); }
   .b-seg.fill { background:var(--ld-seg-on); box-shadow:0 0 8px var(--ld-glow); }
   .b-skip { position:fixed; bottom:30px; font-family:'JetBrains Mono',monospace; font-weight:500; font-size:9px; color:var(--ld-meta); letter-spacing:0.14em; text-transform:uppercase; animation:bBlink 1.4s steps(1) infinite; }
   @keyframes bBlink { 50%{opacity:.4} }
@@ -848,8 +848,6 @@
 })();
 </script>
 <div id="boot" aria-hidden="true">
-  <span class="b-meta">jenny.yue — booting portfolio · est. early internet</span>
-  <span class="b-p1">Player 1 — Jenny</span>
   <div class="b-screen">
     <div class="b-scene" data-k="coffee"><span class="b-emoji">☕</span><div class="b-steam"><i></i><i></i><i></i></div></div>
     <div class="b-scene" data-k="game"><span class="b-emoji">🎮</span><div class="b-ball"></div></div>
